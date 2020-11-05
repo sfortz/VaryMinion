@@ -1,0 +1,55 @@
+test loss, test acc, exec time: [0.6459426283836365, 0.8509182929992676, '00:17:47']
+test loss, test acc, exec time: [0.645681619644165, 0.8522038459777832, '00:18:11']
+test loss, test acc, exec time: [0.6457639932632446, 0.8527089357376099, '00:17:46']
+test loss, test acc, exec time: [0.6453368067741394, 0.8556932806968689, '00:18:12']
+test loss, test acc, exec time: [0.6458752155303955, 0.8520202040672302, '00:18:00']
+test loss, test acc, exec time: [0.645513117313385, 0.8538108468055725, '00:18:12']
+test loss, test acc, exec time: [0.6456794738769531, 0.852662980556488, '00:18:11']
+test loss, test acc, exec time: [0.6454296708106995, 0.8529843688011169, '00:18:12']
+test loss, test acc, exec time: [0.6457764506340027, 0.8525711894035339, '00:18:15']
+test loss, test acc, exec time: [0.6455483436584473, 0.8548209071159363, '00:18:14']
+test loss, test acc, exec time: [0.6453941464424133, 0.8522038459777832, '00:17:25']
+test loss, test acc, exec time: [0.6459038853645325, 0.8514233231544495, '00:18:12']
+test loss, test acc, exec time: [0.6458604335784912, 0.8515610694885254, '00:18:02']
+test loss, test acc, exec time: [0.645944356918335, 0.8523874878883362, '00:18:14']
+test loss, test acc, exec time: [0.6456966400146484, 0.852800726890564, '00:18:04']
+test loss, test acc, exec time: [0.6456201076507568, 0.852846622467041, '00:17:20']
+test loss, test acc, exec time: [0.6454364061355591, 0.8556014895439148, '00:17:20']
+test loss, test acc, exec time: [0.6457070112228394, 0.8521579504013062, '00:17:21']
+test loss, test acc, exec time: [0.6457828283309937, 0.8516988158226013, '00:17:57']
+test loss, test acc, exec time: [0.6458312273025513, 0.8515610694885254, '00:18:01']
+test loss, test acc, exec time: [0.6455023288726807, 0.8533057570457458, '00:18:13']
+test loss, test acc, exec time: [0.6457777619361877, 0.8527548313140869, '00:17:54']
+test loss, test acc, exec time: [0.6459006071090698, 0.8528925776481628, '00:17:51']
+test loss, test acc, exec time: [0.6455287337303162, 0.8527089357376099, '00:17:50']
+test loss, test acc, exec time: [0.6456101536750793, 0.8534894585609436, '00:17:56']
+test loss, test acc, exec time: [0.6455764174461365, 0.8533057570457458, '00:17:17']
+test loss, test acc, exec time: [0.6454877257347107, 0.8544536232948303, '00:17:34']
+test loss, test acc, exec time: [0.6456847786903381, 0.8525711894035339, '00:17:21']
+test loss, test acc, exec time: [0.6456513404846191, 0.8540403842926025, '00:18:02']
+test loss, test acc, exec time: [0.6456085443496704, 0.8534435033798218, '00:17:23']
+test loss, test acc, exec time: [0.645593523979187, 0.8538567423820496, '00:16:09']
+test loss, test acc, exec time: [0.6456405520439148, 0.8520660996437073, '00:15:01']
+test loss, test acc, exec time: [0.6458863019943237, 0.8519743084907532, '00:15:03']
+test loss, test acc, exec time: [0.6457471251487732, 0.8523415923118591, '00:20:43'] -- Jitsi qui tourne en //
+test loss, test acc, exec time: [0.6459107995033264, 0.8504132032394409, '00:18:56'] -- Jitsi qui tourne en //
+test loss, test acc, exec time: [0.645817756652832, 0.8523415923118591, '00:19:37'] -- Jitsi qui tourne en //
+test loss, test acc, exec time: [0.6457133293151855, 0.8529843688011169, '00:21:26'] -- Jitsi qui tourne en //
+test loss, test acc, exec time: [0.6456767320632935, 0.8532598614692688, '00:20:10'] -- Jitsi qui tourne en //
+test loss, test acc, exec time: [0.6457700133323669, 0.8516988158226013, '00:28:39'] -- Jitsi qui tourne en //
+test loss, test acc, exec time: [0.6457319259643555, 0.8530762195587158, '00:16:33']
+test loss, test acc, exec time: [0.6456284523010254, 0.8533976078033447, '00:20:17'] -- Autre programme qui tourne en //
+test loss, test acc, exec time: [0.6459475159645081, 0.8512855768203735, '00:22:06'] -- Autre programme qui tourne en //
+test loss, test acc, exec time: [0.645539402961731, 0.8535353541374207, '00:23:28'] -- Autre programme qui tourne en //
+test loss, test acc, exec time: [0.6455560326576233, 0.85514235496521, '00:25:22'] -- Autre programme qui tourne en //
+test loss, test acc, exec time: [0.6457170248031616, 0.852846622467041, '00:30:52'] -- Autre programme qui tourne en //
+test loss, test acc, exec time: [0.6457605361938477, 0.8530762195587158, '00:24:00'] -- Autre programme qui tourne en //
+test loss, test acc, exec time: [0.6457886099815369, 0.8530762195587158, '00:15:12']
+test loss, test acc, exec time: [0.6457563042640686, 0.8525252342224121, '00:15:20']
+test loss, test acc, exec time: [0.645714521408081, 0.852617084980011, '00:16:56']
+test loss, test acc, exec time: [0.6456449031829834, 0.8534894585609436, '00:18:15']
+test loss, test acc, exec time: [0.6458548307418823, 0.8519743084907532, '00:14:24']
+test loss, test acc, exec time: [0.6458683609962463, 0.8511478304862976, '00:14:25']
+test loss, test acc, exec time: [0.6457836627960205, 0.8531680703163147, '00:14:25']
+test loss, test acc, exec time: [0.6457878351211548, 0.8530303239822388, '00:14:24']
+test loss, test acc, exec time: [0.6458754539489746, 0.852617084980011, '00:14:29']

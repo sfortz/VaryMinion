@@ -68,16 +68,25 @@ def analyze(in_file):
     return mean, deviation
 
 
-def generate(data, out_file):
+def generate(bpic15,bpic20, out_file):
     geometry_options = {"tmargin": "1cm", "lmargin": "1cm"}
     doc = Document(geometry_options=geometry_options)
 
-    with doc.create(Section('Table of results')):
+    with doc.create(Section('Table of results for BPIC15')):
         with doc.create(LongTable('|c|c|c|c|c|c|c|')) as table:  # , angle=270
             table.add_hline()
-            table.add_row(data.columns, mapper=bold, color="lightgray!70")
+            table.add_row(bpic15.columns, mapper=bold, color="lightgray!70")
             table.add_hline()
-            for index, row in data.iterrows():
+            for index, row in bpic15.iterrows():
+                table.add_row(row)
+                table.add_hline()
+
+    with doc.create(Section('Table of results for BPIC20')):
+        with doc.create(LongTable('|c|c|c|c|c|c|c|')) as table:  # , angle=270
+            table.add_hline()
+            table.add_row(bpic20.columns, mapper=bold, color="lightgray!70")
+            table.add_hline()
+            for index, row in bpic20.iterrows():
                 table.add_row(row)
                 table.add_hline()
 
@@ -88,8 +97,6 @@ def generate(data, out_file):
 if __name__ == '__main__':
     input_directory = "../../results/csv_metrics/"
     output_directory = "../../results/results_analyze/"
-
-    out_filename = 'results_sorted'
 
     data = []
 
@@ -106,8 +113,11 @@ if __name__ == '__main__':
             else:
                 print('ERROR:' + str(txt_filename) + 'is not a csv file.')
 
-    output = output_directory + out_filename
     frame = pd.DataFrame(data, columns=['Dataset', 'Model', 'Loss', 'Activation', 'Units', 'Mean', 'Sd'])
     # frame.sort_values(by=['Dataset', 'Model', 'Type', 'Epochs', 'Units'], inplace=True)
-    frame.sort_values(by=['Dataset', 'Mean'], inplace=True, ascending=False)
-    generate(frame, output)
+    frame.sort_values(by=['Mean'], inplace=True, ascending=False)
+    bpic15, bpic20 = [x for _, x in frame.groupby(frame['Dataset'])]
+
+    out_filename = 'results_analyse'
+    output = output_directory + out_filename
+    generate(bpic15, bpic20, output)

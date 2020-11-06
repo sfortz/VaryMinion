@@ -105,9 +105,9 @@ BPIC15&LSTM&BinCrossEntropyLogits&tanh&5&0.49973&0.17092\\%
 \hline%
 BPIC15&LSTM&Weight\_Jaccard&tanh&5&0.433&0.13188\\%
 \hline%
-BPIC15&GRU&Weight\_Jaccard&tanh&5&0.42546&0.1307\\%
-\hline%
 BPIC15&GRU&Manhattan&tanh&5&0.42546&0.1307\\%
+\hline%
+BPIC15&GRU&Weight\_Jaccard&tanh&5&0.42546&0.1307\\%
 \hline%
 BPIC15&GRU&Manhattan&tanh&10&0.40403&0.07322\\%
 \hline%
@@ -142,6 +142,7 @@ BPIC15&LSTM&Manhattan&tanh&5&0.20308&0.03185\\%
 \end{longtable}
 
 %
+\newpage%
 \section{Table of results for BPIC20}%
 \label{sec:TableofresultsforBPIC20}%
 \begin{longtable}{|c|c|c|c|c|c|c|}%
@@ -272,6 +273,37 @@ BPIC20&LSTM&Weight\_Jaccard&tanh&10&0.43669&0.03958\\%
 BPIC20&LSTM&Manhattan&sigmoid&30&0.2772&0.19316\\%
 \hline%
 BPIC20&LSTM&BinCrossEntropyLogits&sigmoid&30&0.27224&0.18167\\%
+\hline%
+\end{longtable}
+
+%
+\newpage%
+\section{Table of results for Hospital Billing}%
+\label{sec:TableofresultsforHospitalBilling}%
+\begin{longtable}{|c|c|c|c|c|c|c|}%
+\hline%
+\rowcolor{lightgray!70}%
+\textbf{Dataset}&\textbf{Model}&\textbf{Loss}&\textbf{Activation}&\textbf{Units}&\textbf{Mean}&\textbf{Sd}\\%
+\hline%
+HospitalBilling&GRU&binaryCrossEntropy&sigmoid&30&0.22299&0.01151\\%
+\hline%
+HospitalBilling&GRU&MSE\_tanh&tanh&30&0.22011&0.02241\\%
+\hline%
+HospitalBilling&LSTM&MSE\_tanh&tanh&30&0.21782&0.01866\\%
+\hline%
+HospitalBilling&GRU&MSE&sigmoid&30&0.20115&0.01762\\%
+\hline%
+HospitalBilling&GRU&MSE&sigmoid&10&0.17615&0.07169\\%
+\hline%
+HospitalBilling&LSTM&MSE&sigmoid&30&0.16149&0.0143\\%
+\hline%
+HospitalBilling&LSTM&MSE&sigmoid&10&0.15891&0.03626\\%
+\hline%
+HospitalBilling&LSTM&MSE&sigmoid&5&0.10374&0.06758\\%
+\hline%
+HospitalBilling&LSTM&binaryCrossEntropy&sigmoid&30&0.10029&0.06299\\%
+\hline%
+HospitalBilling&GRU&MSE&sigmoid&5&0.03908&0.03541\\%
 \hline%
 \end{longtable}
 

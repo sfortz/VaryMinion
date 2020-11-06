@@ -2,7 +2,7 @@ import os
 import re
 import numpy as np
 import pandas as pd
-from pylatex import Document, Section, LongTable
+from pylatex import Document, Section, LongTable, NewPage
 from pylatex.utils import bold
 
 
@@ -68,7 +68,7 @@ def analyze(in_file):
     return mean, deviation
 
 
-def generate(bpic15,bpic20, out_file):
+def generate(bpic15, bpic20, hosp_bill, out_file):
     geometry_options = {"tmargin": "1cm", "lmargin": "1cm"}
     doc = Document(geometry_options=geometry_options)
 
@@ -81,12 +81,25 @@ def generate(bpic15,bpic20, out_file):
                 table.add_row(row)
                 table.add_hline()
 
+    doc.append(NewPage())
+
     with doc.create(Section('Table of results for BPIC20')):
         with doc.create(LongTable('|c|c|c|c|c|c|c|')) as table:  # , angle=270
             table.add_hline()
             table.add_row(bpic20.columns, mapper=bold, color="lightgray!70")
             table.add_hline()
             for index, row in bpic20.iterrows():
+                table.add_row(row)
+                table.add_hline()
+
+    doc.append(NewPage())
+
+    with doc.create(Section('Table of results for Hospital Billing')):
+        with doc.create(LongTable('|c|c|c|c|c|c|c|')) as table:  # , angle=270
+            table.add_hline()
+            table.add_row(hosp_bill.columns, mapper=bold, color="lightgray!70")
+            table.add_hline()
+            for index, row in hosp_bill.iterrows():
                 table.add_row(row)
                 table.add_hline()
 
@@ -116,8 +129,8 @@ if __name__ == '__main__':
     frame = pd.DataFrame(data, columns=['Dataset', 'Model', 'Loss', 'Activation', 'Units', 'Mean', 'Sd'])
     # frame.sort_values(by=['Dataset', 'Model', 'Type', 'Epochs', 'Units'], inplace=True)
     frame.sort_values(by=['Mean'], inplace=True, ascending=False)
-    bpic15, bpic20 = [x for _, x in frame.groupby(frame['Dataset'])]
+    bpic15, bpic20, hosp_bill = [x for _, x in frame.groupby(frame['Dataset'])]
 
     out_filename = 'results_analyse'
     output = output_directory + out_filename
-    generate(bpic15, bpic20, output)
+    generate(bpic15, bpic20, hosp_bill, output)

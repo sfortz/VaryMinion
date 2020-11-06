@@ -47,10 +47,16 @@ def parse_file_name(file_name):
     layer = parse_match(x, '_')
 
     x = re.search(backend + "_.*_" + layer, file_name)
-    x = parse_match(x, backend + '_')
-    loss = re.sub("_" + layer, '', x)
+    if re.search("_sigmoid_", x.group()):
+        x = parse_match(x, backend + '_')
+        loss = re.sub("_sigmoid_" + layer, '', x)
+        activation = "sigmoid"
+    else:
+        x = parse_match(x, backend + '_')
+        loss = re.sub("_" + layer, '', x)
+        activation = "tanh"
 
-    return dataset, model, nb_epoch, nb_unit, batch_size, training_set_size, proc, backend, layer, loss
+    return dataset, model, nb_epoch, nb_unit, batch_size, training_set_size, proc, backend, layer, loss, activation
 
 
 def analyze(in_file):
@@ -67,7 +73,7 @@ def generate(data, out_file):
     doc = Document(geometry_options=geometry_options)
 
     with doc.create(Section('Table of results')):
-        with doc.create(LongTable('|c|c|c|c|c|c|')) as table:  # , angle=270
+        with doc.create(LongTable('|c|c|c|c|c|c|c|')) as table:  # , angle=270
             table.add_hline()
             table.add_row(data.columns, mapper=bold, color="lightgray!70")
             table.add_hline()
@@ -93,15 +99,15 @@ if __name__ == '__main__':
             if txt_filename.is_file() and txt_filename.name.endswith('.csv'):
                 input = input_directory + txt_filename.name
                 name = txt_filename.name[:-4]
-                dataset, model, nb_epoch, nb_unit, batch_size, training_set_size, processor, backend, layer, loss = parse_file_name(name)
+                dataset, model, nb_epoch, nb_unit, batch_size, training_set_size, processor, backend, layer, loss, activation = parse_file_name(name)
                 m, d = analyze(input)
-                data.append([dataset, model, loss, nb_unit, m, d])  # nb_epoch, batch_size, training_set_size, processor, backend, layer,
+                data.append([dataset, model, loss, activation, nb_unit, m, d])  # nb_epoch, batch_size, training_set_size, processor, backend, layer,
 
             else:
                 print('ERROR:' + str(txt_filename) + 'is not a csv file.')
 
     output = output_directory + out_filename
-    frame = pd.DataFrame(data, columns=['Dataset', 'Model', 'Loss', 'Units', 'Mean', 'Sd'])
+    frame = pd.DataFrame(data, columns=['Dataset', 'Model', 'Loss', 'Activation', 'Units', 'Mean', 'Sd'])
     # frame.sort_values(by=['Dataset', 'Model', 'Type', 'Epochs', 'Units'], inplace=True)
     frame.sort_values(by=['Dataset', 'Mean'], inplace=True, ascending=False)
     generate(frame, output)

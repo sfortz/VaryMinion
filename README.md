@@ -1,4 +1,4 @@
-# VaryMinion
+# VaryMinions
 
 This repository gathers all materials that were used to conduct experiments to predict to which variant an execution trace belongs to. We so far experimented with business processes.    
 

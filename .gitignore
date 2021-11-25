@@ -2,9 +2,11 @@
 /shelf/
 /workspace.xml
 *.DS_Store
+**/.DS_Store
 *.idea
 *.pyc
 datasets/single-label/claroline-dis_50.csv
 datasets/single-label/claroline-dis_10.csv
 datasets/multi-label/claroline-dis_10.csv
 datasets/multi-label/claroline-dis_50.csv
+results/training_metrics/.DS_Store

@@ -8,6 +8,7 @@
 **/._.DS_Store
 *.idea
 *.pyc
+**/.pyc
 datasets/single-label/claroline-dis_50.csv
 datasets/single-label/claroline-dis_10.csv
 datasets/multi-label/claroline-dis_10.csv

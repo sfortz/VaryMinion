@@ -31,20 +31,20 @@ def get_tf_device_type():
 
 # create a neural network
 # adapted from https://keras.io/guides/working_with_rnns/
-def get_compiled_model(model_type="RNN", multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_unit=10):
+def get_compiled_model(model_type="RNN", multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_unit=10, activation='tanh', loss='mse'):
     # the model takes as input and output only one kind of such entities (Sequential) -> takes a list of Events and
     # outputs the configuration to which the trace belongs. In between, only the result of the neuron functions are
     # aggregated. model = tf.keras.Sequential([ tf.keras.layers.Dense(10, activation='relu'), tf.keras.layers.Dense(
     # 10, activation='relu'), tf.keras.layers.Dense(nb_classes) ])
     if model_type == "RNN":
         print("Training a RNN")
-        model = training_RNN_tensorflow.get_RNN_model(multi, alpha_size, nb_classes, nb_col, nb_unit)
+        model = training_RNN_tensorflow.get_RNN_model(multi, alpha_size, nb_classes, nb_col, nb_unit, activation, loss)
     elif model_type == "LSTM":
         print("Training a LSTM")
-        model = training_LSTM_tensorflow.get_LSTM_model(multi, alpha_size, nb_classes, nb_col, nb_unit)
+        model = training_LSTM_tensorflow.get_LSTM_model(multi, alpha_size, nb_classes, nb_col, nb_unit, activation, loss)
     elif model_type == "GRU":
         print("Training a GRU")
-        model = training_GRU_tensorflow.get_GRU_model(multi, alpha_size, nb_classes, nb_col, nb_unit)
+        model = training_GRU_tensorflow.get_GRU_model(multi, alpha_size, nb_classes, nb_col, nb_unit, activation, loss)
     else:
         sys.exit("ERROR: " + model_type + " is not recognized as a model type")
 
@@ -82,7 +82,7 @@ def analyze_predictions(multi, predictions, tfclass):
 
 
 
-def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, percent_training):
+def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, percent_training, activation, loss):
     start_time = time.time()
     print(dataset_filename)
     get_tf_device_type()
@@ -128,7 +128,7 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
     print(len(event2int))
     model = get_compiled_model(model_type=model_type, multi=multi, alpha_size=len(event2int),
                                nb_classes=len(cl_encoded.columns),
-                               nb_col=len(ev_encoded.columns), nb_unit=nb_unit)
+                               nb_col=len(ev_encoded.columns), nb_unit=nb_unit, activation=activation, loss=loss)
 
     print(model.summary())
 
@@ -184,6 +184,10 @@ if __name__ == "__main__":
                         help="Ratio of the dataset used for training (default=0.66)")
     parser.add_argument('--batch_size', default="128", dest="batch_size",
                         help="Size of the batch for training (default=128)", type=int)
+    parser.add_argument('--activation', default="tanh", dest="activation",
+                        help="Activation function to use (default=tanh)", type=str)
+    parser.add_argument('--loss', default="mse", dest="loss",
+                        help="Loss function to use (default=mse)", type=str)
 
     args = parser.parse_args()
 
@@ -194,5 +198,7 @@ if __name__ == "__main__":
     batch_size = args.batch_size
     model_type = args.model_type
     multi = args.multi
+    activation = args.activation
+    loss = args.loss
 
-    main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, percent_training)
+    main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, percent_training, activation, loss)

@@ -14,3 +14,4 @@ datasets/single-label/claroline-dis_10.csv
 datasets/multi-label/claroline-dis_10.csv
 datasets/multi-label/claroline-dis_50.csv
 *.pyc
+*.pyc

@@ -25,13 +25,13 @@ def get_LSTM_model(multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_uni
 
         if loss == 'bin_ce':
             model.compile(optimizer='adam', loss=tf.keras.losses.binary_crossentropy, metrics=['accuracy'])
-        if loss == 'bin_ce-logits':
+        elif loss == 'bin_ce-logits':
             model.compile(optimizer='adam', loss=tf.keras.losses.BinaryCrossentropy(from_logits=True), metrics=['accuracy'])
         elif loss == 'mse':
             model.compile(optimizer='adam', loss=tf.keras.losses.mean_squared_error, metrics=['accuracy'])
-        if loss == 'jaccard':
+        elif loss == 'jaccard':
             model.compile(optimizer='adam', loss=minion_losses.vary_weighted_jaccard, metrics=['accuracy'])
-        if loss == 'manhattan':
+        elif loss == 'manhattan':
             model.compile(optimizer='adam', loss=minion_losses.vary_manhattan_dist, metrics=['accuracy'])
         else:
             raise ValueError("loss = " + loss)

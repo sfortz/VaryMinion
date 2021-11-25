@@ -21,7 +21,7 @@ def get_LSTM_model(multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_uni
     # https://towardsdatascience.com/deep-learning-which-loss-and-activation-functions-should-i-use-ac02f1c56aa8
     if multi:
         # sigmoid is well suited when we predict multiple label for multiple classes:
-        # model.add(layers.Dense(nb_classes, activation='tanh'))
+        # model.add(layers.Dense(nb_classes, activation='sigmoid'))
          #model.add(layers.Dense(nb_classes))
         # model.add(layers.Dense(nb_classes, activation='relu'))
         model.add(layers.Dense(nb_classes, activation='tanh'))

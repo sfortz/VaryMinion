@@ -22,7 +22,7 @@ def get_GRU_model(multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_unit
         elif activation == 'sigmoid':
             model.add(layers.Dense(nb_classes, activation='sigmoid'))
         else:
-            raise ValueError(activation)
+            raise ValueError("activation = " + activation)
 
         if loss == 'bin_ce':
             model.compile(optimizer='adam', loss=tf.keras.losses.binary_crossentropy, metrics=['accuracy'])
@@ -35,7 +35,7 @@ def get_GRU_model(multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_unit
         if loss == 'manhattan':
             model.compile(optimizer='adam', loss=minion_losses.vary_manhattan_dist, metrics=['accuracy'])
         else:
-            raise ValueError(loss)
+            raise ValueError("loss = " + loss)
 
     else:
         # softmax is well suited when we predict a single label for multiple classes:

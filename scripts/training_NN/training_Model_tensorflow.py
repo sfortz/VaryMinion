@@ -147,7 +147,7 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
     output_filename = output_filename_base + '_metrics_' + str(model_type) + '_nb_unit_' + str(
         nb_unit) + '_training_set_size_' + str(
         percent_training) + '_nb_epochs_' + str(nb_epochs) + '_batch_size_' + str(batch_size) + \
-                      '_' + TENSORFLOW_DEVICE + '_tensorflow_BinCrossEntropyLogits_tanh'
+                      '_' + TENSORFLOW_DEVICE + '_tensorflow_' + str(loss) + '_' + str(activation)
     if multi:
         output_filename = output_filename + '_multi.txt'
     else:

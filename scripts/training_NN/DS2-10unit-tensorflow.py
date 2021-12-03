@@ -1,4 +1,4 @@
-import training_Model_tensorflow as minion
+import training_Model as minion
 
 if __name__ == "__main__":
 

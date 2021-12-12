@@ -15,3 +15,10 @@ datasets/multi-label/claroline-dis_10.csv
 datasets/multi-label/claroline-dis_50.csv
 *.pyc
 *.pyc
+scripts/training_NN/__pycache__/training_RNN.cpython-38.pyc
+scripts/training_NN/__pycache__/training_LSTM.cpython-38.pyc
+scripts/training_NN/__pycache__/training_Model.cpython-38.pyc
+scripts/training_NN/__pycache__/training_GRU.cpython-38.pyc
+scripts/training_NN/__pycache__/preprocessing.cpython-38.pyc
+scripts/training_NN/.DS_Store
+results/training_metrics/.DS_Store

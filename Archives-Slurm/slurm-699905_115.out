@@ -1,0 +1,28 @@
+
+Les modules suivants ont été rechargés avec un changement de version :
+  1) FFTW/3.3.8-gompi-2019b => FFTW/3.3.8-gompic-2019b
+  2) OpenMPI/3.1.4-GCC-8.3.0 => OpenMPI/3.1.4-gcccuda-2019b
+  3) ScaLAPACK/2.0.2-gompi-2019b => ScaLAPACK/2.0.2-gompic-2019b
+
+Job start at sam déc 11 23:00:52 CET 2021
+2021-12-11 23:00:53.379687: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+--------------------------------------------------------------------------
+[[38364,1],0]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: drg2-w019
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "job-array-definition.py", line 68, in <module>
+    ds, m, e, u, bs, act, l = get_params()
+  File "job-array-definition.py", line 56, in get_params
+    ds = datasets[int(tab[0]) - 1]
+IndexError: list index out of range
+Job end at sam déc 11 23:00:56 CET 2021

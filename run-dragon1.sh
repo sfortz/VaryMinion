@@ -9,6 +9,8 @@
 #SBATCH --mem-per-cpu=12288 # 12GB
 #SBATCH --partition=gpu
 #
+#SBATCH --array=1-40
+#
 #SBATCH --mail-user=sophie.fortz@unamur.be
 #SBATCH --mail-type=ALL
 #
@@ -19,5 +21,5 @@ module load releases/2019b
 module load TensorFlow/2.4.1-fosscuda-2019b-Python-3.7.4
 echo "Job start at $(date)"
 cd scripts/training_NN/
-python3 Claroline-dis_50-tensorflow.py
+python3 DS1-10unit.py
 echo "Job end at $(date)"

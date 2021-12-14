@@ -13,7 +13,7 @@ def get_GRU_model(multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_unit
     model = tf.keras.Sequential()
     model.add(layers.Embedding(alpha_size, alpha_size, input_length=nb_col, mask_zero=True))
     #model.add(layers.Bidirectional(layers.GRU(nb_unit, activation='relu')))
-    model.add(layers.Bidirectional(layers.GRU(nb_unit, activation='tanh', recurrent_activation='sigmoid', reset_after=True,)))
+    model.add(layers.Bidirectional(layers.GRU(nb_unit, activation='tanh', recurrent_activation='sigmoid', reset_after=True)))
 
     # https://towardsdatascience.com/deep-learning-which-loss-and-activation-functions-should-i-use-ac02f1c56aa8
     if multi:

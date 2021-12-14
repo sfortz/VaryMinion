@@ -22,3 +22,5 @@ scripts/training_NN/__pycache__/training_GRU.cpython-38.pyc
 scripts/training_NN/__pycache__/preprocessing.cpython-38.pyc
 scripts/training_NN/.DS_Store
 results/training_metrics/.DS_Store
+datasets/multi-label/claroline-rand_50.csv
+datasets/multi-label/claroline-rand_10.csv

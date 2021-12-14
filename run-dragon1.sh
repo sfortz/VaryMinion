@@ -9,7 +9,7 @@
 #SBATCH --mem-per-cpu=12288 # 12GB
 #SBATCH --partition=gpu
 #
-#SBATCH --array=3,4,7-40
+#SBATCH --array=1-40
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be
 #SBATCH --mail-type=ALL

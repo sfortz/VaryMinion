@@ -24,7 +24,7 @@ mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/
 cd $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/scripts/training_NN/
 echo "Job start at $(date)"
-python3 job-array-claroline-50-dis.py
+python3 job-array-claroline-50-rand.py
 echo "Job end at $(date)"
 rsync -azu $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/ $CECIHOME/VaryMinions/
 rm -rf $LOCALSCRATCH/$SLURM_JOB_ID

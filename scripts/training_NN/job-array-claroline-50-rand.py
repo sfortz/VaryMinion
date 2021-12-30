@@ -2,7 +2,7 @@ import os
 import training_Model as minion
 
 idx = int(os.environ["SLURM_ARRAY_TASK_ID"])
-datasets = ["claroline-dis_50.csv"]
+datasets = ["claroline-rand_50.csv"]
 models = ["GRU", "LSTM"]
 epochs = [20]
 batch_sizes = [128]

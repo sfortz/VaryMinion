@@ -11,7 +11,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem-per-cpu=12288 # 12GB
 #
-#SBATCH --array=1,3-20
+#SBATCH --array=1-10
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be
 #SBATCH --mail-type=ALL
@@ -25,8 +25,12 @@ mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/
 cd $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/scripts/training_NN/
 echo "Job start at $(date)"
-python3 job-array-claroline-10-rand.py
+n=10
+for (( i=0 ; i<$n ; i++ ));
+do
+  python3 job-array-claroline-50-dis.py
+  rsync -azu $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/ $CECIHOME/VaryMinions/
+done
 echo "Job end at $(date)"
-rsync -azu $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/ $CECIHOME/VaryMinions/
 rm -rf $LOCALSCRATCH/$SLURM_JOB_ID
 

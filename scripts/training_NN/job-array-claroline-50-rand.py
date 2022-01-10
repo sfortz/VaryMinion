@@ -9,7 +9,7 @@ batch_sizes = [128]
 units = [30]
 activations = ["tanh", "sigmoid"]
 losses = ["bin_ce", "bin_ce-logits", "mse", "jaccard", "manhattan"]
-nb_iterations = 10
+nb_iterations = 1
 
 
 def get_number_of_executions():
@@ -72,12 +72,10 @@ def get_params():
 
 if __name__ == "__main__":
 
-    get_number_of_executions()
-
     ds, m, e, u, bs, act, l = idx_to_config()
     config_name = ds + ' with ' + m + ' model, ' + str(e) + ' epochs, ' + str(u) + ' units, ' + str(
         bs) + ' batch_size, ' + act + ' as activation function and ' + l + ' as loss function.'
-    print("Begining exécution of the " + str(idx) + " th configuration: " + str(config_name))
+    print(str(config_name))
     for i in range(0, nb_iterations):
         print("Exécution " + str(i) + " : ")
         minion.main(ds, m, True, e, u, bs, 0.66, act, l)

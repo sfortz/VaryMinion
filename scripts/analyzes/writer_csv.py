@@ -32,15 +32,15 @@ if __name__ == "__main__":
 
     with os.scandir(input_directory) as it:
         for txt_filename in it:
-            if txt_filename.is_file():
+            print(txt_filename)
+            if txt_filename.is_dir():
+                print('Skipping directory.')
+            elif txt_filename.is_file():
                 if txt_filename.name.endswith('.txt'):  # and txt_filename.name.startswith('BPIC15'):
-
                     name = txt_filename.name[:-4]
                     csv_filename = name + '.csv'
-
                     txt_file = input_directory + txt_filename.name
                     csv_file = output_directory + csv_filename
                     parse(txt_file, csv_file)
-
             else:
                 print('ERROR: Not a text file.')

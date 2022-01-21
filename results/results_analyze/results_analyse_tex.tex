@@ -172,21 +172,6 @@ claroline{-}dis\_10&GRU&jaccard&sigmoid&30&0.09839&0.00173\\%
 \rowcolor{lightgray!70}%
 \textbf{Dataset}&\textbf{Model}&\textbf{Loss}&\textbf{Activation}&\textbf{Units}&\textbf{Mean}&\textbf{Sd}\\%
 \hline%
-claroline{-}dis\_50&GRU&bin\_ce&tanh&30&0.03164&0.02985\\%
-\hline%
-claroline{-}dis\_50&GRU&bin\_ce{-}logits&tanh&30&0.02001&0.00047\\%
-\hline%
-\end{longtable}
-
-%
-\newpage%
-\section{Table of results for Claroline Dissimilar 50}%
-\label{sec:TableofresultsforClarolineDissimilar50}%
-\begin{longtable}{|c|c|c|c|c|c|c|}%
-\hline%
-\rowcolor{lightgray!70}%
-\textbf{Dataset}&\textbf{Model}&\textbf{Loss}&\textbf{Activation}&\textbf{Units}&\textbf{Mean}&\textbf{Sd}\\%
-\hline%
 claroline{-}rand\_10&GRU&bin\_ce{-}logits&sigmoid&30&0.99639&0.00052\\%
 \hline%
 claroline{-}rand\_10&GRU&bin\_ce&sigmoid&30&0.96647&0.06421\\%
@@ -231,6 +216,41 @@ claroline{-}rand\_10&GRU&bin\_ce{-}logits&tanh&30&0.0984&0.00172\\%
 
 %
 \newpage%
+\section{Table of results for Claroline Dissimilar 50}%
+\label{sec:TableofresultsforClarolineDissimilar50}%
+\begin{longtable}{|c|c|c|c|c|c|c|}%
+\hline%
+\rowcolor{lightgray!70}%
+\textbf{Dataset}&\textbf{Model}&\textbf{Loss}&\textbf{Activation}&\textbf{Units}&\textbf{Mean}&\textbf{Sd}\\%
+\hline%
+claroline{-}dis\_50&LSTM&bin\_ce&sigmoid&30&0.70379&0.26701\\%
+\hline%
+claroline{-}dis\_50&GRU&bin\_ce&sigmoid&30&0.64426&0.42091\\%
+\hline%
+claroline{-}dis\_50&LSTM&mse&tanh&30&0.61657&0.2294\\%
+\hline%
+claroline{-}dis\_50&LSTM&mse&sigmoid&30&0.28343&0.2688\\%
+\hline%
+claroline{-}dis\_50&GRU&bin\_ce{-}logits&sigmoid&30&0.21323&0.38663\\%
+\hline%
+claroline{-}dis\_50&GRU&jaccard&tanh&30&0.08452&0.03197\\%
+\hline%
+claroline{-}dis\_50&GRU&bin\_ce&tanh&30&0.03164&0.02985\\%
+\hline%
+claroline{-}dis\_50&LSTM&bin\_ce&tanh&30&0.02366&0.00772\\%
+\hline%
+claroline{-}dis\_50&LSTM&bin\_ce{-}logits&sigmoid&30&0.02017&0.00047\\%
+\hline%
+claroline{-}dis\_50&GRU&bin\_ce{-}logits&tanh&30&0.02001&0.00047\\%
+\hline%
+claroline{-}dis\_50&GRU&mse&tanh&30&0.01991&0.00027\\%
+\hline%
+claroline{-}dis\_50&LSTM&bin\_ce{-}logits&tanh&30&0.01982&0.00045\\%
+\hline%
+\end{longtable}
+
+%
+\newpage%
 \section{Table of results for Claroline Random 50}%
 \label{sec:TableofresultsforClarolineRandom50}%
 \begin{longtable}{|c|c|c|c|c|c|c|}%
@@ -238,7 +258,13 @@ claroline{-}rand\_10&GRU&bin\_ce{-}logits&tanh&30&0.0984&0.00172\\%
 \rowcolor{lightgray!70}%
 \textbf{Dataset}&\textbf{Model}&\textbf{Loss}&\textbf{Activation}&\textbf{Units}&\textbf{Mean}&\textbf{Sd}\\%
 \hline%
+claroline{-}rand\_50&LSTM&bin\_ce&sigmoid&30&0.94178&0.0782\\%
+\hline%
+claroline{-}rand\_50&LSTM&bin\_ce{-}logits&sigmoid&30&0.8298&0.27052\\%
+\hline%
 claroline{-}rand\_50&GRU&bin\_ce&sigmoid&30&0.75005&0.30048\\%
+\hline%
+claroline{-}rand\_50&LSTM&mse&sigmoid&30&0.73585&0.0991\\%
 \hline%
 claroline{-}rand\_50&LSTM&mse&tanh&30&0.63381&0.03688\\%
 \hline%
@@ -251,6 +277,8 @@ claroline{-}rand\_50&GRU&bin\_ce&tanh&30&0.39893&0.14202\\%
 claroline{-}rand\_50&GRU&jaccard&sigmoid&30&0.23311&0.19339\\%
 \hline%
 claroline{-}rand\_50&GRU&jaccard&tanh&30&0.10687&0.0295\\%
+\hline%
+claroline{-}rand\_50&LSTM&jaccard&tanh&30&0.08646&0.02364\\%
 \hline%
 claroline{-}rand\_50&GRU&manhattan&tanh&30&0.04156&0.01071\\%
 \hline%

@@ -124,7 +124,7 @@ if __name__ == '__main__':
     frame = pd.DataFrame(data, columns=['Dataset', 'Model', 'Loss', 'Activation', 'Units', 'Mean', 'Sd'])
     # frame.sort_values(by=['Dataset', 'Model', 'Type', 'Epochs', 'Units'], inplace=True)
 
-    bpic15, bpic20, claroline_dis_10, claroline_rand_10, claroline_dis_50, claroline_rand_50 = [x for _, x in frame.groupby(frame['Dataset'])]
+    bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50 = [x for _, x in frame.groupby(frame['Dataset'])]
 
     out_filename = 'results_analyse'
     output = output_directory + out_filename

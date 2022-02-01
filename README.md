@@ -1,15 +1,17 @@
 # VaryMinions
 
-This repository gathers all materials that were used to conduct experiments to predict to which variant an execution trace belongs to. We experimented with both business processes and a Software Product Line (SPL).    
+This repository gathers all materials that were used to conduct experiments to predict to which variant an execution trace belongs to. We experimented with both business processes and a Software Product Line (SPL). This repository contains the material for an EMSE extension of **VaryMinions**, which was first published at [MaLTeSQuE](https://maltesque2021.github.io/index.html).
 
 ## Prerequisites
 
 Our experiments were ran on on two different HPC facilities hosted by the [CECI](http://www.ceci-hpc.be/). 
-All our scripts are written in Python3 to ensure portability.
+All our scripts are written in Python3 to ensure portability. We have used [Keras](https://keras.io/) along with the TensorFlow framework.
+
+## Running setup
+
 On the first cluster, called Dragon1, we used 1  CPU  with  8  cores  per  task  (Intel  Sandy  Bridge,  E5-2650  processors  at2.00GHz) with a Tesla Kepler accelerator (K20m, 1.1 Tflops, float64). 
 For runs on Dragon2, we used 1 CPU with 12 cores (Intel SkyLake, Xeon 6126 processors at 2.60 GHz) associated with a NVidia Tesla Volta V100 accelerator (5120 CUDA Cores, 16GB HBM2, 7.5 TFlops, double precision). 
-Each CPU has been allocated 12 GB of RAM. [[Slurm]]((https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html) ) is the resource manager and job scheduler used on these infrastructures. 
-
+Each CPU has been allocated 12 GB of RAM. [Slurm](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html) is the resource manager and job scheduler used on these infrastructures. To use the juob scheduler, we can use the scripts _run-dragon*.sh_ (in the directory root).
 
 ## Organisation of the repo
 
@@ -29,8 +31,8 @@ The _analyzes_ folder is composed of several files:
  - _results\_analyse_ is about generating tables (both in tex and pdf format) and creating plots out from analyzes.
  - _writer\_csv_ is simply a parser that turns output text files into csv.
  
-The _Training_NN_ folder contain all scripts to learn different models with different parameterization on the datasets used in the paper. 
- - _training\_Model_ is some kind of interface that ease the training of any RNN following the same procedure. It is also in charge of the managing the parameters given when the script is launched. This script is called by _DS*-*unit.py_ scripts.
+The _Training_NN_ folder contains all scripts to learn different models with different parameterization on the datasets used in the paper. 
+ - _training\_Model_ is some kind of interface that ease the training of any RNN following the same procedure. It is also in charge of managing the parameters given when the script is launched. This script is called by _DS*-*unit.py_ scripts.
  - _training\_GRU_ and _training\_LSTM_ are called by the _training\_Model_, depending on type of RNN selected.
  - _preprocessing_ is called by the _training\_Model_ to execute the conversion of traces into tensors.
  - _vary_minion_losses_ defines two custom loss functions: Manhattan and Jaccard distances.

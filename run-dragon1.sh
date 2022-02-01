@@ -25,13 +25,8 @@ mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/
 cd $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/scripts/training_NN/
 echo "Job start at $(date)"
-n=10
-for ((i=0 ; i<$n ; i++));
-do
-  echo "Begining exécution of the $(i) th configuration: "
-  python3 job-array-claroline-50-rand.py
-  rsync -azu $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/results/training_metrics/ $CECIHOME/VaryMinions/results/training_metrics/
-done
+python3 job-array-claroline-50-rand.py
+rsync -azu $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/results/training_metrics/ $CECIHOME/VaryMinions/results/training_metrics/
 echo "Job end at $(date)"
 rm -rf $LOCALSCRATCH/$SLURM_JOB_ID
 

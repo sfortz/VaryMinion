@@ -11,7 +11,6 @@ from sklearn.model_selection import train_test_split
 import preprocessing
 import training_GRU
 import training_LSTM
-import training_RNN
 
 
 TENSORFLOW_DEVICE = ''  # store if the type of computation is CPU or GPU

@@ -11,16 +11,6 @@ activations = ["tanh", "sigmoid"]
 losses = ["bin_ce", "bin_ce-logits", "mse", "jaccard", "manhattan"]
 nb_iterations = 10
 
-"""
-datasets = ["BPIC15.csv", "BPIC20.csv", "claroline-dis_10.csv", "claroline-dis_50.csv"]
-models = ["GRU", "LSTM"]
-epochs = [10, 20, 30, 50]
-batch_sizes = [64, 128, 256, 1024, 2048, 8192]
-units = [10, 30, 50]
-activations = ["tanh", "sigmoid"]
-losses = ["bin_ce", "bin_ce-logits", "mse", "jaccard", "manhattan"]
-nb_iterations = 10"""
-
 
 def get_number_of_executions():
     size = len(datasets) * len(models) * len(epochs) * len(batch_sizes) * len(units) * len(activations) * len(losses)

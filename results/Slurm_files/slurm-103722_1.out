@@ -1,9 +1,0 @@
-
-Les modules suivants ont été rechargés avec un changement de version :
-  1) FFTW/3.3.8-gompi-2019b => FFTW/3.3.8-gompic-2019b
-  2) OpenMPI/3.1.4-GCC-8.3.0 => OpenMPI/3.1.4-gcccuda-2019b
-  3) ScaLAPACK/2.0.2-gompi-2019b => ScaLAPACK/2.0.2-gompic-2019b
-
-Job start at jeu déc 16 10:10:19 CET 2021
-2021-12-16 10:10:20.091019: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
-Job end at jeu déc 16 10:10:29 CET 2021

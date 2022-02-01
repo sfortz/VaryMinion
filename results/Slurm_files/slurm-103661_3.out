@@ -1,117 +1,0 @@
-
-Les modules suivants ont été rechargés avec un changement de version :
-  1) FFTW/3.3.8-gompi-2019b => FFTW/3.3.8-gompic-2019b
-  2) OpenMPI/3.1.4-GCC-8.3.0 => OpenMPI/3.1.4-gcccuda-2019b
-  3) ScaLAPACK/2.0.2-gompi-2019b => ScaLAPACK/2.0.2-gompic-2019b
-
-Job start at mer déc 15 18:11:14 CET 2021
-2021-12-15 18:11:15.859442: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
-WARNING:tensorflow:From /CECI/home/users/s/f/sfortz/VaryMinions/scripts/training_NN/training_Model.py:24: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
-Instructions for updating:
-Use `tf.config.list_physical_devices('GPU')` instead.
-2021-12-15 18:11:24.246215: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
-2021-12-15 18:11:24.249587: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcuda.so.1
-2021-12-15 18:11:24.306947: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
-pciBusID: 0000:08:00.0 name: Tesla K20m computeCapability: 3.5
-coreClock: 0.7055GHz coreCount: 13 deviceMemorySize: 4.63GiB deviceMemoryBandwidth: 193.71GiB/s
-2021-12-15 18:11:24.307041: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
-2021-12-15 18:11:24.314768: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
-2021-12-15 18:11:24.314872: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
-2021-12-15 18:11:24.320120: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
-2021-12-15 18:11:24.321831: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
-2021-12-15 18:11:24.327841: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
-2021-12-15 18:11:24.331659: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
-2021-12-15 18:11:24.342440: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
-2021-12-15 18:11:24.344458: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
-2021-12-15 18:11:24.344534: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
-2021-12-15 18:11:25.039278: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-12-15 18:11:25.039345: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0 
-2021-12-15 18:11:25.039358: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N 
-2021-12-15 18:11:25.041287: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/device:GPU:0 with 4318 MB memory) -> physical GPU (device: 0, name: Tesla K20m, pci bus id: 0000:08:00.0, compute capability: 3.5)
-2021-12-15 18:11:25.042156: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
-2021-12-15 18:11:25.042734: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
-pciBusID: 0000:08:00.0 name: Tesla K20m computeCapability: 3.5
-coreClock: 0.7055GHz coreCount: 13 deviceMemorySize: 4.63GiB deviceMemoryBandwidth: 193.71GiB/s
-2021-12-15 18:11:25.042779: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
-2021-12-15 18:11:25.042818: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
-2021-12-15 18:11:25.042850: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
-2021-12-15 18:11:25.042888: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
-2021-12-15 18:11:25.042922: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
-2021-12-15 18:11:25.042975: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
-2021-12-15 18:11:25.043018: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
-2021-12-15 18:11:25.043050: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
-2021-12-15 18:11:25.044126: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
-2021-12-15 18:11:25.044156: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-12-15 18:11:25.044169: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0 
-2021-12-15 18:11:25.044179: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N 
-2021-12-15 18:11:25.045284: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/device:GPU:0 with 4318 MB memory) -> physical GPU (device: 0, name: Tesla K20m, pci bus id: 0000:08:00.0, compute capability: 3.5)
-2021-12-15 18:12:53.917554: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
-2021-12-15 18:12:53.919176: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
-pciBusID: 0000:08:00.0 name: Tesla K20m computeCapability: 3.5
-coreClock: 0.7055GHz coreCount: 13 deviceMemorySize: 4.63GiB deviceMemoryBandwidth: 193.71GiB/s
-2021-12-15 18:12:53.919232: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
-2021-12-15 18:12:53.919278: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
-2021-12-15 18:12:53.919314: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
-2021-12-15 18:12:53.919355: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
-2021-12-15 18:12:53.919390: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
-2021-12-15 18:12:53.919424: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
-2021-12-15 18:12:53.919460: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
-2021-12-15 18:12:53.919496: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
-2021-12-15 18:12:53.920582: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
-2021-12-15 18:12:53.921301: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
-2021-12-15 18:12:53.921874: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
-pciBusID: 0000:08:00.0 name: Tesla K20m computeCapability: 3.5
-coreClock: 0.7055GHz coreCount: 13 deviceMemorySize: 4.63GiB deviceMemoryBandwidth: 193.71GiB/s
-2021-12-15 18:12:53.921904: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
-2021-12-15 18:12:53.921941: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
-2021-12-15 18:12:53.921973: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
-2021-12-15 18:12:53.922003: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
-2021-12-15 18:12:53.922039: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
-2021-12-15 18:12:53.922070: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
-2021-12-15 18:12:53.922100: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
-2021-12-15 18:12:53.922130: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
-2021-12-15 18:12:53.923203: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
-2021-12-15 18:12:53.923256: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-12-15 18:12:53.923270: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0 
-2021-12-15 18:12:53.923281: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N 
-2021-12-15 18:12:53.924404: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 4318 MB memory) -> physical GPU (device: 0, name: Tesla K20m, pci bus id: 0000:08:00.0, compute capability: 3.5)
-2021-12-15 18:12:53.924519: I tensorflow/core/common_runtime/process_util.cc:146] Creating new thread pool with default inter op setting: 8. Tune using inter_op_parallelism_threads for best performance.
-2021-12-15 18:12:57.400620: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
-2021-12-15 18:12:57.401351: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 1994990000 Hz
-2021-12-15 18:13:09.370272: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
-Number of possible configurations: 20
-Begining exécution of the 3 th configuration: claroline-rand_10.csv with GRU model, 20 epochs, 30 units, 128 batch_size, tanh as activation function and mse as loss function.
-Exécution 0 : 
-claroline-rand_10.csv
-Running Tensforflow with GPU, yay !
-GRU
-Trying to load: ../../datasets/multi-label/claroline-rand_10.csv
-Categories:
-[0 1 2 3 4 5 6 7 8 9]
-output y_tr
-(33000, 300)
-(33000, 10)
-(17000, 300)
-(17000, 10)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-44
-Training a GRU
-Model: "sequential"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding (Embedding)        (None, 300, 44)           1936      
-_________________________________________________________________
-bidirectional (Bidirectional (None, 60)                13680     
-_________________________________________________________________
-dense (Dense)                (None, 10)                610       
-=================================================================
-Total params: 16,226
-Trainable params: 16,226
-Non-trainable params: 0
-_________________________________________________________________
-None
-Epoch 1/20
-  1/258 [..............................] - ETA: 1:16:31 - loss: 0.0987 - accuracy: 0.1094  2/258 [..............................] - ETA: 5:24 - loss: 0.0982 - accuracy: 0.1133     3/258 [..............................] - ETA: 5:25 - loss: 0.0978 - accuracy: 0.1120  4/258 [..............................] - ETA: 5:20 - loss: 0.0974 - accuracy: 0.1128  5/258 [..............................] - ETA: 5:10 - loss: 0.0970 - accuracy: 0.1127  6/258 [..............................] - ETA: 5:02 - loss: 0.0966 - accuracy: 0.1124  7/258 [..............................] - ETA: 5:01 - loss: 0.0963 - accuracy: 0.1124  8/258 [..............................] - ETA: 5:01 - loss: 0.0960 - accuracy: 0.1129  9/258 [>.............................] - ETA: 5:01 - loss: 0.0957 - accuracy: 0.1123 10/258 [>.............................] - ETA: 4:57 - loss: 0.0955 - accuracy: 0.1114 11/258 [>.............................] - ETA: 4:54 - loss: 0.0952 - accuracy: 0.1107 12/258 [>.............................] - ETA: 4:51 - loss: 0.0950 - accuracy: 0.1102 13/258 [>.............................] - ETA: 4:48 - loss: 0.0949 - accuracy: 0.1096 14/258 [>.............................] - ETA: 4:48 - loss: 0.0947 - accuracy: 0.1089 15/258 [>.............................] - ETA: 4:47 - loss: 0.0945 - accuracy: 0.1082 16/258 [>.............................] - ETA: 4:45 - loss: 0.0944 - accuracy: 0.1077 17/258 [>.............................] - ETA: 4:44 - loss: 0.0943 - accuracy: 0.1071 18/258 [=>............................] - ETA: 4:42 - loss: 0.0941 - accuracy: 0.1068 19/258 [=>............................] - ETA: 4:40 - loss: 0.0940 - accuracy: 0.1065slurmstepd: error: *** JOB 103664 ON dr27 CANCELLED AT 2021-12-15T18:13:37 ***

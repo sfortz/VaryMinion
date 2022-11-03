@@ -1,7 +1,4 @@
-import os
 import training_Model as minion
-
-idx = int(os.environ["SLURM_ARRAY_TASK_ID"])
 
 if __name__ == "__main__":
 

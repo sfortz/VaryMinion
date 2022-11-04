@@ -35,7 +35,6 @@ def available_configs():
                     for u in units:
                         for act in activations:
                             for l in losses:
-                                # config = [i, ds, m, e, u, bs, act, l]
                                 configs += [[i, ds, m, e, u, bs, act, l]]
                                 i += 1
     return configs

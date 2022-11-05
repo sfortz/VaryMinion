@@ -29,16 +29,12 @@ def get_tf_device_type():
 
 # create a neural network
 # adapted from https://keras.io/guides/working_with_rnns/
-def get_compiled_model(model_type="RNN", multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_unit=10,
-                       activation='tanh', loss='mse'):
+def get_compiled_model(model_type="RNN", multi=False, alpha_size=128, nb_classes=1, nb_col=128, nb_unit=10, activation='tanh', loss='mse'):
     # the model takes as input and output only one kind of such entities (Sequential) -> takes a list of Events and
     # outputs the configuration to which the trace belongs. In between, only the result of the neuron functions are
     # aggregated. model = tf.keras.Sequential([ tf.keras.layers.Dense(10, activation='relu'), tf.keras.layers.Dense(
     # 10, activation='relu'), tf.keras.layers.Dense(nb_classes) ])
 
-    # if model_type == "RNN":
-    # print("Training a RNN")
-    # model = training_RNN.get_RNN_model(multi, alpha_size, nb_classes, nb_col, nb_unit, activation, loss)
     if model_type == "LSTM":
         print("Training a LSTM")
         model = training_LSTM.get_LSTM_model(multi, alpha_size, nb_classes, nb_col, nb_unit, activation, loss)
@@ -64,8 +60,7 @@ def analyze_predictions(multi, predictions, tfclass):
             # print("masked class: " + str(np_masked_class))
             label = np_masked_class.nonzero()
             # print("label sorted: " + str(label[0]) + " vs " + str(tfclass[i]) + " for sample: " + str(i))
-            print(" Top predictions indices: " + str(pred[:len(label[0])]) + " vs. real classes indices: " + str(
-                label[0]))
+            print(" Top predictions indices: " + str(pred[:len(label[0])]) + " vs. real classes indices: " + str(label[0]))
             intersect = np.intersect1d(pred[:len(label[0])], label[0])
             union = np.union1d(pred[:len(label[0])], label[0])
             jaccard_score = len(intersect) / len(union)
@@ -81,7 +76,7 @@ def analyze_predictions(multi, predictions, tfclass):
 
 
 def save_metric(metric, output_filename, values):
-    output_directory = "../../results/training_metrics/" + str(metric) + "/"
+    output_directory = "../../results/training_metrics/" # + str(metric) + "/"
     output_file = output_directory + output_filename
     f = open(output_file, "a")
     orig_stdout = sys.stdout
@@ -115,6 +110,7 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
 
     print("Test generation tensorFlow datasets")
 
+    # turn into tensorFlow dataset
     tf_train = tf.convert_to_tensor(x_tr)
     tf_label = tf.convert_to_tensor(y_tr)
     tf_test = tf.convert_to_tensor(x_ts)
@@ -129,6 +125,8 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
                                nb_col=len(ev_encoded.columns), nb_unit=nb_unit, activation=activation, loss=loss)
 
     print(model.summary())
+
+    model.fit(tf_train, tf_label, epochs=nb_epochs, batch_size=batch_size)
 
     print("Evaluate on test data")
     results = model.evaluate(tf_test, tf_class, batch_size=batch_size)
@@ -149,10 +147,7 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
     conf_mat = confusion_matrix(class_arg, pred_arg, normalize='pred')
 
     output_filename_base = path.basename(dataset_filename)
-    output_filename = output_filename_base + '_metrics_' + str(model_type) + '_nb_unit_' + str(
-        nb_unit) + '_training_set_size_' + str(
-        percent_training) + '_nb_epochs_' + str(nb_epochs) + '_batch_size_' + str(
-        batch_size) + '_GPU_tensorflow_' + str(loss) + '_' + str(activation)
+    output_filename = output_filename_base + '_metrics_' + str(model_type) + '_nb_unit_' + str(nb_unit) + '_training_set_size_' + str(percent_training) + '_nb_epochs_' + str(nb_epochs) + '_batch_size_' + str(batch_size) + '_GPU_tensorflow_' + str(loss) + '_' + str(activation)
     if multi:
         output_filename = output_filename + '_multi.txt'
     else:

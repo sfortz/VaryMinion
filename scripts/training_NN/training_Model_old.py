@@ -75,6 +75,17 @@ def analyze_predictions(multi, predictions, tfclass):
         print("Expected outcome:" + str(label))
 
 
+def save_metric(metric, output_filename, values):
+    output_directory = "../../results/training_metrics/" # + str(metric) + "/"
+    output_file = output_directory + output_filename
+    f = open(output_file, "a")
+    orig_stdout = sys.stdout
+    sys.stdout = f
+    print(values)
+    sys.stdout = orig_stdout
+    f.close()
+
+
 def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, percent_training, activation, loss):
     start_time = time.time()
     print(dataset_filename)
@@ -87,11 +98,9 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
 
     ev_encoded, cl_encoded, event2int, int2event = preprocessing.preproc(dataset_filename, multi)
 
-
     x_tr, x_ts, y_tr, y_ts = train_test_split(ev_encoded, cl_encoded, train_size=percent_training)
 
     print("output y_tr")
-    # print(y_tr)
     print(x_tr.shape)
     print(y_tr.shape)
     print(x_ts.shape)
@@ -139,32 +148,46 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
     print("Analyzing predictions")
     analyze_predictions(multi, pred_noarg, tf_class)
 
-    output_directory = "../../results/training_metrics/"
+    conf_mat = 1
+    precision = 1
+    recall = 1
+    fscore = 1
+    support = 1
+
     output_filename_base = path.basename(dataset_filename)
-    output_filename = output_filename_base + '_metrics_' + str(model_type) + '_nb_unit_' + str(
-        nb_unit) + '_training_set_size_' + str(
-        percent_training) + '_nb_epochs_' + str(nb_epochs) + '_batch_size_' + str(batch_size) + '_GPU_tensorflow_' + str(loss) + '_' + str(activation)
+    output_filename = output_filename_base + '_metrics_' + str(model_type) + '_nb_unit_' + str(nb_unit) + '_training_set_size_' + str(percent_training) + '_nb_epochs_' + str(nb_epochs) + '_batch_size_' + str(batch_size) + '_GPU_tensorflow_' + str(loss) + '_' + str(activation)
     if multi:
         output_filename = output_filename + '_multi.txt'
     else:
         output_filename = output_filename + '.txt'
 
-    output_file = output_directory + output_filename
-    f = open(output_file, "a")
-    orig_stdout = sys.stdout
-    sys.stdout = f
-
     seconds = time.time() - start_time
     exec_time = time.strftime("%H:%M:%S", time.gmtime(seconds))
     results.append(exec_time)
 
-    print("test loss, test acc, exec time:", results)
+    metric = "training_loss_acc_time"
+    values = "test loss, test acc, exec time:" + str(results)
+    save_metric(metric, output_filename, values)
 
-    sys.stdout = orig_stdout
-    f.close()
-   # if np.isnan(results[0]):
-   #     print("LOSS IS NAN! LOOP AGAIN.")
-    #    main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, percent_training, activation, loss)
+    metric = "training_precision"
+    values = "precision:" + str(precision)
+    save_metric(metric, output_filename, values)
+
+    metric = "training_recall"
+    values = "recall:" + str(recall)
+    save_metric(metric, output_filename, values)
+
+    metric = "training_f1"
+    values = "fscore:" + str(fscore)
+    save_metric(metric, output_filename, values)
+
+    metric = "training_support"
+    values = "support:" + str(support)
+    save_metric(metric, output_filename, values)
+
+    metric = "training_conf_matrix"
+    values = "matrix:" + str(conf_mat)
+    save_metric(metric, output_filename, values)
 
 
 if __name__ == "__main__":

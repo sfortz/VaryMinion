@@ -128,9 +128,6 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
 
     history = model.fit(tf_train, tf_label, epochs=nb_epochs, batch_size=batch_size)
 
-    #print('Last loss value:')
-    #print(list(history.history['loss'])[-1])
-
     print("Evaluate on test data")
     results = model.evaluate(tf_test, tf_class, batch_size=batch_size)
 
@@ -139,11 +136,15 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
     print("Analyzing predictions")
     analyze_predictions(multi, pred_noarg, tf_class)
 
-    conf_mat = 1
-    precision = 1
-    recall = 1
-    fscore = 1
-    support = 1
+    # Create classification report with precision, recall and F1 score
+    print("Generating classification report")
+    class_arg = np.argmax(tf_class, axis=1)
+    pred_arg = np.argmax(pred_noarg, axis=1)
+    precision, recall, fscore, support = precision_recall_fscore_support(class_arg, pred_arg, average=None)
+
+    # Create confusion matrix and normalizes it over predicted (columns)
+    print("Generating confusion matrix")
+    conf_mat = confusion_matrix(class_arg, pred_arg, normalize='pred')
 
     output_filename_base = path.basename(dataset_filename)
     output_filename = output_filename_base + '_metrics_' + str(model_type) + '_nb_unit_' + str(nb_unit) + '_training_set_size_' + str(percent_training) + '_nb_epochs_' + str(nb_epochs) + '_batch_size_' + str(batch_size) + '_GPU_tensorflow_' + str(loss) + '_' + str(activation)

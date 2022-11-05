@@ -76,7 +76,7 @@ def analyze_predictions(multi, predictions, tfclass):
 
 
 def save_metric(metric, output_filename, values):
-    output_directory = "../../results/training_metrics/" # + str(metric) + "/"
+    output_directory = "../../results/training_metrics/" + str(metric) + "/"
     output_file = output_directory + output_filename
     f = open(output_file, "a")
     orig_stdout = sys.stdout

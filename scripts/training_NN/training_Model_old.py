@@ -111,19 +111,10 @@ def main(dataset_filename, model_type, multi, nb_epochs, nb_unit, batch_size, pe
     print("Test generation tensorFlow datasets")
 
     # turn into tensorFlow dataset
-    # tf_train = tf.data.Dataset.from_tensor_slices((x_tr.values, y_tr.values))
     tf_train = tf.convert_to_tensor(x_tr)
     tf_label = tf.convert_to_tensor(y_tr)
-    # for element in tf_train:
-    #    print(element)
-    # tf_test = tf.data.Dataset.from_tensor_slices((x_ts.values, y_ts.values))
     tf_test = tf.convert_to_tensor(x_ts)
     tf_class = tf.convert_to_tensor(y_ts)
-
-    # reshape for tensorflow/keras RNN -> df_dataset.columns = number of features; one class to retrieve
-    # tf_train = tf.reshape(tf_train,[-1,1,df_dataset.columns])
-
-    # tf_test = tf.reshape(tf_test,[-1,1,df_dataset.columns])
 
     print("End generating tensorFlow datasets")
 

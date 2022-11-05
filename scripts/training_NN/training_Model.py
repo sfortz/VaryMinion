@@ -69,7 +69,7 @@ def analyze_predictions(multi, predictions, tfclass):
             intersect = np.intersect1d(pred[:len(label[0])], label[0])
             union = np.union1d(pred[:len(label[0])], label[0])
             jaccard_score = len(intersect) / len(union)
-            print(f"Jaccard Score: {jaccard_score}")
+            print("Jaccard Score: ", jaccard_score)
             print(" ")
     else:  # for single-label, we only need to retrieve the index of the maximum probability value corresponding to
         # the index of the selected class in the ground truth

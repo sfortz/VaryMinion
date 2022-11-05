@@ -1,1160 +1,0 @@
-
-The following have been reloaded with a version change:
-  1) FFTW/3.3.8-gompi-2019b => FFTW/3.3.8-gompi-2020b
-  2) GCC/8.3.0 => GCC/10.2.0
-  3) GCCcore/8.3.0 => GCCcore/10.2.0
-  4) OpenBLAS/0.3.7-GCC-8.3.0 => OpenBLAS/0.3.12-GCC-10.2.0
-  5) OpenMPI/3.1.4-GCC-8.3.0 => OpenMPI/4.0.5-GCC-10.2.0
-  6) ScaLAPACK/2.0.2-gompi-2019b => ScaLAPACK/2.1.0-gompi-2020b
-  7) XZ/5.2.4-GCCcore-8.3.0 => XZ/5.2.5-GCCcore-10.2.0
-  8) binutils/2.32-GCCcore-8.3.0 => binutils/2.35-GCCcore-10.2.0
-  9) foss/2019b => foss/2020b
- 10) gompi/2019b => gompi/2020b
- 11) hwloc/1.11.12-GCCcore-8.3.0 => hwloc/2.2.0-GCCcore-10.2.0
- 12) libpciaccess/0.14-GCCcore-8.3.0 => libpciaccess/0.16-GCCcore-10.2.0
- 13) libxml2/2.9.9-GCCcore-8.3.0 => libxml2/2.9.10-GCCcore-10.2.0
- 14) numactl/2.0.12-GCCcore-8.3.0 => numactl/2.0.13-GCCcore-10.2.0
- 15) releases/2019b => releases/2020b
- 16) zlib/1.2.11-GCCcore-8.3.0 => zlib/1.2.11-GCCcore-10.2.0
-
-Job start at Sat Nov  5 09:30:58 CET 2022
-WARNING:tensorflow:From /scratch/2546002/2546002/VaryMinions/scripts/training_NN/training_Model.py:22: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
-Instructions for updating:
-Use `tf.config.list_physical_devices('GPU')` instead.
-2022-11-05 09:31:05.336554: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
-2022-11-05 09:31:05.337083: I tensorflow/core/common_runtime/process_util.cc:146] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
-2022-11-05 09:31:07.169557: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
-2022-11-05 09:31:07.169918: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2500195000 Hz
-Number of possible configurations: 40
-Begining exécution of the 8 th configuration: BPIC15.csv with GRU model, 20 epochs, 30 units, 128 batch_size, sigmoid as activation function and mse as loss function.
-Exécution 0 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding (Embedding)        (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional (Bidirectional (None, 60)                70020     
-_________________________________________________________________
-dense (Dense)                (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 1:02 - loss: 0.2485 - accuracy: 0.1719 2/15 [===>..........................] - ETA: 0s - loss: 0.2485 - accuracy: 0.1895   3/15 [=====>........................] - ETA: 0s - loss: 0.2486 - accuracy: 0.1905 4/15 [=======>......................] - ETA: 0s - loss: 0.2487 - accuracy: 0.1898 5/15 [=========>....................] - ETA: 0s - loss: 0.2487 - accuracy: 0.1896 6/15 [===========>..................] - ETA: 0s - loss: 0.2487 - accuracy: 0.1899 7/15 [=============>................] - ETA: 0s - loss: 0.2487 - accuracy: 0.1905 8/15 [===============>..............] - ETA: 0s - loss: 0.2487 - accuracy: 0.1920 9/15 [=================>............] - ETA: 0s - loss: 0.2487 - accuracy: 0.192410/15 [===================>..........] - ETA: 0s - loss: 0.2487 - accuracy: 0.192211/15 [=====================>........] - ETA: 0s - loss: 0.2487 - accuracy: 0.191712/15 [=======================>......] - ETA: 0s - loss: 0.2487 - accuracy: 0.191413/15 [=========================>....] - ETA: 0s - loss: 0.2487 - accuracy: 0.190914/15 [===========================>..] - ETA: 0s - loss: 0.2487 - accuracy: 0.190515/15 [==============================] - ETA: 0s - loss: 0.2487 - accuracy: 0.190315/15 [==============================] - 5s 75ms/step - loss: 0.2487 - accuracy: 0.1901
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [2 0 3 4 1] pred: [0.5009203  0.48527318 0.5063459  0.5004626  0.4957709 ]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [0 1 3 4 2] pred: [0.51251346 0.5011449  0.48273033 0.49857274 0.49338394]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [2 0 3 1 4] pred: [0.5050732  0.49112546 0.5077864  0.4963362  0.48935753]
- Top predictions indices: [2] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [0 1 4 3 2] pred: [0.5152996  0.5021954  0.48299828 0.49382198 0.49707708]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [0 3 2 4 1] pred: [0.5125684  0.48499945 0.5043435  0.506542   0.49772772]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [0 1 2 3 4] pred: [0.5132125  0.49798983 0.49756587 0.4940006  0.4933154 ]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 6 ============
-pred sorted: [2 0 3 1 4] pred: [0.49846506 0.4919958  0.49877417 0.49735203 0.4891424 ]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [3 2 0 4 1] pred: [0.49134082 0.48609623 0.4941665  0.50817704 0.4911064 ]
- Top predictions indices: [3] vs. real classes indices: [3]
-Jaccard Score:  1.0
- 
- ============ Sample: 8 ============
-pred sorted: [0 3 1 4 2] pred: [0.50486815 0.49968967 0.4848625  0.50362283 0.49237707]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 9 ============
-pred sorted: [0 4 2 3 1] pred: [0.50251526 0.48883832 0.49741593 0.49110135 0.49880564]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 10 ============
-pred sorted: [0 2 1 3 4] pred: [0.51121825 0.49656796 0.4979948  0.49616036 0.4878275 ]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [0 4 3 2 1] pred: [0.5073482  0.4767927  0.4963784  0.4973615  0.50066864]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 12 ============
-pred sorted: [0 3 2 4 1] pred: [0.50729525 0.48241663 0.4961518  0.50134414 0.49143344]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 13 ============
-pred sorted: [0 2 3 4 1] pred: [0.51070833 0.48827294 0.5087737  0.4936191  0.48868778]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [2 0 4 3 1] pred: [0.50580484 0.47821113 0.50820464 0.49290863 0.50240695]
- Top predictions indices: [2] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 1 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_1"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_1 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_1 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_1 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 57s - loss: 0.2509 - accuracy: 0.2344 2/15 [===>..........................] - ETA: 0s - loss: 0.2510 - accuracy: 0.2188  3/15 [=====>........................] - ETA: 0s - loss: 0.2511 - accuracy: 0.2066 4/15 [=======>......................] - ETA: 0s - loss: 0.2511 - accuracy: 0.1999 5/15 [=========>....................] - ETA: 0s - loss: 0.2511 - accuracy: 0.1952 6/15 [===========>..................] - ETA: 0s - loss: 0.2511 - accuracy: 0.1924 7/15 [=============>................] - ETA: 0s - loss: 0.2511 - accuracy: 0.1904 8/15 [===============>..............] - ETA: 0s - loss: 0.2511 - accuracy: 0.1892 9/15 [=================>............] - ETA: 0s - loss: 0.2511 - accuracy: 0.188510/15 [===================>..........] - ETA: 0s - loss: 0.2511 - accuracy: 0.188411/15 [=====================>........] - ETA: 0s - loss: 0.2511 - accuracy: 0.188412/15 [=======================>......] - ETA: 0s - loss: 0.2511 - accuracy: 0.188113/15 [=========================>....] - ETA: 0s - loss: 0.2511 - accuracy: 0.187614/15 [===========================>..] - ETA: 0s - loss: 0.2511 - accuracy: 0.187615/15 [==============================] - ETA: 0s - loss: 0.2510 - accuracy: 0.187615/15 [==============================] - 5s 73ms/step - loss: 0.2510 - accuracy: 0.1876
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [3 2 1 4 0] pred: [0.4886023  0.50490916 0.50763875 0.51620847 0.5042955 ]
- Top predictions indices: [3] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [3 1 2 4 0] pred: [0.49620157 0.505744   0.5027436  0.50587463 0.49694204]
- Top predictions indices: [3] vs. real classes indices: [3]
-Jaccard Score:  1.0
- 
- ============ Sample: 2 ============
-pred sorted: [2 4 1 3 0] pred: [0.49518597 0.4986613  0.50645906 0.4967054  0.50107366]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [4 1 2 3 0] pred: [0.49860686 0.5042317  0.503749   0.50123996 0.50808537]
- Top predictions indices: [4] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [2 1 3 4 0] pred: [0.49811226 0.5051991  0.5084406  0.5044692  0.5016287 ]
- Top predictions indices: [2] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [2 4 3 1 0] pred: [0.4949212  0.5001642  0.51206374 0.50266504 0.5077737 ]
- Top predictions indices: [2] vs. real classes indices: [2]
-Jaccard Score:  1.0
- 
- ============ Sample: 6 ============
-pred sorted: [3 4 1 2 0] pred: [0.49084297 0.50375855 0.5014054  0.5171164  0.5058266 ]
- Top predictions indices: [3] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [3 4 2 1 0] pred: [0.4931725  0.50084746 0.50494367 0.5126765  0.51063055]
- Top predictions indices: [3] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [4 2 3 1 0] pred: [0.49291348 0.49329692 0.49519217 0.49491724 0.5015342 ]
- Top predictions indices: [4] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 9 ============
-pred sorted: [4 1 0 2 3] pred: [0.50120974 0.50687045 0.5011004  0.49908346 0.50899076]
- Top predictions indices: [4] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [3 2 1 0 4] pred: [0.49356252 0.49561352 0.5080143  0.508465   0.49198207]
- Top predictions indices: [3] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [3 2 1 4 0] pred: [0.4926395  0.49684912 0.4984154  0.5070358  0.49444306]
- Top predictions indices: [3] vs. real classes indices: [3]
-Jaccard Score:  1.0
- 
- ============ Sample: 12 ============
-pred sorted: [3 2 1 0 4] pred: [0.49451295 0.49562633 0.4990241  0.50734895 0.4944776 ]
- Top predictions indices: [3] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 13 ============
-pred sorted: [2 4 3 1 0] pred: [0.4863234  0.49118456 0.5188561  0.50405926 0.505343  ]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [4 2 3 1 0] pred: [0.49206263 0.49305254 0.4955555  0.49480605 0.50174063]
- Top predictions indices: [4] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 2 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_2"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_2 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_2 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_2 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 58s - loss: 0.2518 - accuracy: 0.2344 2/15 [===>..........................] - ETA: 1s - loss: 0.2519 - accuracy: 0.2227  3/15 [=====>........................] - ETA: 1s - loss: 0.2519 - accuracy: 0.2196 4/15 [=======>......................] - ETA: 1s - loss: 0.2519 - accuracy: 0.2199 5/15 [=========>....................] - ETA: 0s - loss: 0.2519 - accuracy: 0.2215 6/15 [===========>..................] - ETA: 0s - loss: 0.2519 - accuracy: 0.2219 7/15 [=============>................] - ETA: 0s - loss: 0.2519 - accuracy: 0.2221 8/15 [===============>..............] - ETA: 0s - loss: 0.2520 - accuracy: 0.2213 9/15 [=================>............] - ETA: 0s - loss: 0.2520 - accuracy: 0.221010/15 [===================>..........] - ETA: 0s - loss: 0.2520 - accuracy: 0.220611/15 [=====================>........] - ETA: 0s - loss: 0.2520 - accuracy: 0.220512/15 [=======================>......] - ETA: 0s - loss: 0.2520 - accuracy: 0.220213/15 [=========================>....] - ETA: 0s - loss: 0.2520 - accuracy: 0.220014/15 [===========================>..] - ETA: 0s - loss: 0.2520 - accuracy: 0.219415/15 [==============================] - ETA: 0s - loss: 0.2520 - accuracy: 0.219015/15 [==============================] - 5s 80ms/step - loss: 0.2520 - accuracy: 0.2186
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [3 0 4 2 1] pred: [0.5030789  0.49491242 0.50005364 0.5070941  0.5010588 ]
- Top predictions indices: [3] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [3 2 1 4 0] pred: [0.49770766 0.5032269  0.5059178  0.513323   0.502737  ]
- Top predictions indices: [3] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [2 0 3 1 4] pred: [0.50363314 0.49971405 0.5092438  0.50140125 0.49925765]
- Top predictions indices: [2] vs. real classes indices: [2]
-Jaccard Score:  1.0
- 
- ============ Sample: 3 ============
-pred sorted: [2 3 4 0 1] pred: [0.50236213 0.5010099  0.5163017  0.5107882  0.5069906 ]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [2 4 0 1 3] pred: [0.5089576  0.50665754 0.51209927 0.5059598  0.51025355]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [0 3 4 2 1] pred: [0.5035505  0.48951668 0.4974484  0.5032254  0.50190556]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 6 ============
-pred sorted: [2 3 0 4 1] pred: [0.50325775 0.49432358 0.50806445 0.50358576 0.50233424]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [3 4 0 2 1] pred: [0.5014286  0.49231058 0.49751738 0.5062225  0.50240254]
- Top predictions indices: [3] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [2 0 3 1 4] pred: [0.51282364 0.5079527  0.5156851  0.51241624 0.50316614]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 9 ============
-pred sorted: [4 0 2 3 1] pred: [0.5066655  0.49089238 0.5040773  0.494351   0.5085985 ]
- Top predictions indices: [4] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [3 1 0 2 4] pred: [0.5088038  0.51236033 0.5032452  0.5155112  0.49536726]
- Top predictions indices: [3] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [2 1 4 0 3] pred: [0.5019148  0.50460863 0.50489926 0.50082517 0.50363016]
- Top predictions indices: [2] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 12 ============
-pred sorted: [2 0 3 1 4] pred: [0.512454   0.5077719  0.5160865  0.5117876  0.50390047]
- Top predictions indices: [2] vs. real classes indices: [2]
-Jaccard Score:  1.0
- 
- ============ Sample: 13 ============
-pred sorted: [0 3 4 2 1] pred: [0.5086571  0.49928325 0.5059167  0.50864583 0.5070206 ]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [3 1 4 0 2] pred: [0.49450332 0.49911258 0.49216077 0.5000812  0.497818  ]
- Top predictions indices: [3] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 3 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_3"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_3 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_3 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_3 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 56s - loss: 0.2504 - accuracy: 0.2344 2/15 [===>..........................] - ETA: 0s - loss: 0.2503 - accuracy: 0.2266  3/15 [=====>........................] - ETA: 0s - loss: 0.2503 - accuracy: 0.2240 4/15 [=======>......................] - ETA: 0s - loss: 0.2503 - accuracy: 0.2246 5/15 [=========>....................] - ETA: 0s - loss: 0.2502 - accuracy: 0.2259 6/15 [===========>..................] - ETA: 0s - loss: 0.2502 - accuracy: 0.2263 7/15 [=============>................] - ETA: 0s - loss: 0.2502 - accuracy: 0.2269 8/15 [===============>..............] - ETA: 0s - loss: 0.2502 - accuracy: 0.2276 9/15 [=================>............] - ETA: 0s - loss: 0.2502 - accuracy: 0.228610/15 [===================>..........] - ETA: 0s - loss: 0.2502 - accuracy: 0.229611/15 [=====================>........] - ETA: 0s - loss: 0.2502 - accuracy: 0.230612/15 [=======================>......] - ETA: 0s - loss: 0.2502 - accuracy: 0.231413/15 [=========================>....] - ETA: 0s - loss: 0.2502 - accuracy: 0.232314/15 [===========================>..] - ETA: 0s - loss: 0.2502 - accuracy: 0.233015/15 [==============================] - ETA: 0s - loss: 0.2502 - accuracy: 0.233815/15 [==============================] - 5s 69ms/step - loss: 0.2502 - accuracy: 0.2345
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [1 2 4 3 0] pred: [0.49483767 0.5068662  0.50413734 0.49822327 0.50190544]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [0 4 3 2 1] pred: [0.5069791  0.49907038 0.4992264  0.5002571  0.5055806 ]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [0 2 4 1 3] pred: [0.5019347  0.49950844 0.50058424 0.49474823 0.50049853]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [3 1 4 0 2] pred: [0.49639723 0.50493807 0.49595156 0.50687444 0.503727  ]
- Top predictions indices: [3] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [4 2 3 1 0] pred: [0.49906456 0.5011664  0.50254005 0.5025139  0.50540113]
- Top predictions indices: [4] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [4 1 3 2 0] pred: [0.49909142 0.5067904  0.49944082 0.5028962  0.50697047]
- Top predictions indices: [4] vs. real classes indices: [4]
-Jaccard Score:  1.0
- 
- ============ Sample: 6 ============
-pred sorted: [2 0 3 4 1] pred: [0.5018554  0.4966557  0.50372565 0.50129306 0.4984522 ]
- Top predictions indices: [2] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [0 3 1 4 2] pred: [0.51331544 0.4973252  0.49277773 0.5118721  0.49537194]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [1 3 4 0 2] pred: [0.4963889  0.50587344 0.49401668 0.5046638  0.4995294 ]
- Top predictions indices: [1] vs. real classes indices: [1]
-Jaccard Score:  1.0
- 
- ============ Sample: 9 ============
-pred sorted: [0 1 4 2 3] pred: [0.50313157 0.5012902  0.49856344 0.49297768 0.49942604]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [1 4 2 0 3] pred: [0.49856347 0.5045489  0.5004464  0.4954758  0.50047565]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [3 0 4 2 1] pred: [0.49623585 0.49181557 0.494795   0.5021629  0.49540794]
- Top predictions indices: [3] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 12 ============
-pred sorted: [2 3 1 0 4] pred: [0.49775964 0.49810883 0.5035662  0.49915805 0.492512  ]
- Top predictions indices: [2] vs. real classes indices: [2]
-Jaccard Score:  1.0
- 
- ============ Sample: 13 ============
-pred sorted: [0 3 4 1 2] pred: [0.50795215 0.49670333 0.4964221  0.5070743  0.5013045 ]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [4 0 3 1 2] pred: [0.5029602  0.49812663 0.49423432 0.50258386 0.503627  ]
- Top predictions indices: [4] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 4 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_4"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_4 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_4 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_4 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 59s - loss: 0.2500 - accuracy: 0.2031 2/15 [===>..........................] - ETA: 0s - loss: 0.2500 - accuracy: 0.1914  3/15 [=====>........................] - ETA: 0s - loss: 0.2500 - accuracy: 0.1884 4/15 [=======>......................] - ETA: 0s - loss: 0.2500 - accuracy: 0.1886 5/15 [=========>....................] - ETA: 0s - loss: 0.2500 - accuracy: 0.1887 6/15 [===========>..................] - ETA: 0s - loss: 0.2500 - accuracy: 0.1885 7/15 [=============>................] - ETA: 0s - loss: 0.2500 - accuracy: 0.1874 8/15 [===============>..............] - ETA: 0s - loss: 0.2500 - accuracy: 0.1863 9/15 [=================>............] - ETA: 0s - loss: 0.2500 - accuracy: 0.185710/15 [===================>..........] - ETA: 0s - loss: 0.2500 - accuracy: 0.185111/15 [=====================>........] - ETA: 0s - loss: 0.2500 - accuracy: 0.184712/15 [=======================>......] - ETA: 0s - loss: 0.2500 - accuracy: 0.184313/15 [=========================>....] - ETA: 0s - loss: 0.2500 - accuracy: 0.183814/15 [===========================>..] - ETA: 0s - loss: 0.2499 - accuracy: 0.183015/15 [==============================] - ETA: 0s - loss: 0.2499 - accuracy: 0.182115/15 [==============================] - 5s 69ms/step - loss: 0.2499 - accuracy: 0.1813
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [2 3 1 0 4] pred: [0.4941399  0.50158834 0.50248665 0.5020686  0.4876177 ]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [1 0 3 2 4] pred: [0.5035763  0.5043128  0.4982745  0.49990875 0.49686387]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [0 1 3 2 4] pred: [0.508746   0.50696385 0.49764925 0.5007255  0.4894162 ]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [1 3 0 2 4] pred: [0.49339616 0.5103202  0.49296945 0.5089932  0.49288043]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [3 1 2 0 4] pred: [0.4970027  0.50322986 0.49973646 0.5041827  0.49466428]
- Top predictions indices: [3] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [3 2 0 1 4] pred: [0.49806592 0.4972289  0.5035781  0.50700295 0.49362546]
- Top predictions indices: [3] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 6 ============
-pred sorted: [0 1 3 2 4] pred: [0.50792813 0.5040146  0.49682435 0.501315   0.49592373]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [1 3 2 0 4] pred: [0.4960759  0.50382644 0.5018941  0.50196654 0.4941507 ]
- Top predictions indices: [1] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [1 0 4 2 3] pred: [0.50358415 0.5061211  0.49620813 0.49493852 0.49649465]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 9 ============
-pred sorted: [1 3 2 0 4] pred: [0.49370533 0.50614876 0.5019962  0.50494105 0.49173406]
- Top predictions indices: [1] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [0 3 2 1 4] pred: [0.50189227 0.49798432 0.49925542 0.50029576 0.4933986 ]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [0 2 3 1 4] pred: [0.5059407  0.4950031  0.50098985 0.4989027  0.4925702 ]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 12 ============
-pred sorted: [0 2 3 1 4] pred: [0.50427514 0.49756283 0.5019921  0.4996237  0.49406114]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 13 ============
-pred sorted: [3 1 2 0 4] pred: [0.49730065 0.4981708  0.4981381  0.4993646  0.4936439 ]
- Top predictions indices: [3] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [2 3 1 0 4] pred: [0.49370953 0.50052524 0.50510955 0.50435394 0.4893965 ]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 5 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_5"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_5 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_5 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_5 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 57s - loss: 0.2516 - accuracy: 0.2266 2/15 [===>..........................] - ETA: 0s - loss: 0.2516 - accuracy: 0.2207  3/15 [=====>........................] - ETA: 0s - loss: 0.2517 - accuracy: 0.2131 4/15 [=======>......................] - ETA: 0s - loss: 0.2518 - accuracy: 0.2077 5/15 [=========>....................] - ETA: 0s - loss: 0.2518 - accuracy: 0.2052 6/15 [===========>..................] - ETA: 0s - loss: 0.2519 - accuracy: 0.2029 7/15 [=============>................] - ETA: 0s - loss: 0.2519 - accuracy: 0.2005 8/15 [===============>..............] - ETA: 0s - loss: 0.2519 - accuracy: 0.1982 9/15 [=================>............] - ETA: 0s - loss: 0.2519 - accuracy: 0.196810/15 [===================>..........] - ETA: 0s - loss: 0.2519 - accuracy: 0.195411/15 [=====================>........] - ETA: 0s - loss: 0.2519 - accuracy: 0.194712/15 [=======================>......] - ETA: 0s - loss: 0.2519 - accuracy: 0.193913/15 [=========================>....] - ETA: 0s - loss: 0.2519 - accuracy: 0.193014/15 [===========================>..] - ETA: 0s - loss: 0.2519 - accuracy: 0.192615/15 [==============================] - ETA: 0s - loss: 0.2519 - accuracy: 0.192315/15 [==============================] - 5s 60ms/step - loss: 0.2519 - accuracy: 0.1919
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [4 1 0 3 2] pred: [0.505283   0.5064441  0.4879058  0.49581775 0.511122  ]
- Top predictions indices: [4] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [0 1 4 3 2] pred: [0.5135932  0.51016885 0.49511892 0.49992907 0.5071214 ]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [3 0 1 2 4] pred: [0.50315386 0.4940217  0.49346486 0.5104202  0.49097005]
- Top predictions indices: [3] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [1 0 4 3 2] pred: [0.50572246 0.50912964 0.4916783  0.50110173 0.5025462 ]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [0 1 4 3 2] pred: [0.50837386 0.5063755  0.4898614  0.50089234 0.5058443 ]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 5 ============
-pred sorted: [1 0 4 3 2] pred: [0.50975317 0.51262003 0.49876004 0.49979252 0.50861067]
- Top predictions indices: [1] vs. real classes indices: [1]
-Jaccard Score:  1.0
- 
- ============ Sample: 6 ============
-pred sorted: [0 1 3 4 2] pred: [0.509867   0.5089981  0.49800193 0.5084208  0.50027794]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [0 4 1 3 2] pred: [0.5143252  0.50667095 0.49214917 0.5013717  0.50952876]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [4 0 3 1 2] pred: [0.5164442  0.50443304 0.5027782  0.50673205 0.5177544 ]
- Top predictions indices: [4] vs. real classes indices: [4]
-Jaccard Score:  1.0
- 
- ============ Sample: 9 ============
-pred sorted: [1 0 3 4 2] pred: [0.5099079 0.5115891 0.4946539 0.5039102 0.5036542]
- Top predictions indices: [1] vs. real classes indices: [1]
-Jaccard Score:  1.0
- 
- ============ Sample: 10 ============
-pred sorted: [4 3 0 1 2] pred: [0.50511205 0.49798653 0.48528016 0.5061344  0.51304483]
- Top predictions indices: [4] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [4 0 1 3 2] pred: [0.5090342  0.5068732  0.48904768 0.4989269  0.5094074 ]
- Top predictions indices: [4] vs. real classes indices: [4]
-Jaccard Score:  1.0
- 
- ============ Sample: 12 ============
-pred sorted: [4 1 0 3 2] pred: [0.50248265 0.50719994 0.48810717 0.499218   0.50869006]
- Top predictions indices: [4] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 13 ============
-pred sorted: [0 4 1 3 2] pred: [0.515942  0.5042762 0.4923334 0.5014173 0.5112566]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [0 3 4 1 2] pred: [0.5125189  0.501241   0.49960572 0.50550354 0.5046834 ]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 6 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_6"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_6 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_6 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_6 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 59s - loss: 0.2508 - accuracy: 0.2422 2/15 [===>..........................] - ETA: 0s - loss: 0.2507 - accuracy: 0.2480  3/15 [=====>........................] - ETA: 0s - loss: 0.2506 - accuracy: 0.2548 4/15 [=======>......................] - ETA: 0s - loss: 0.2506 - accuracy: 0.2555 5/15 [=========>....................] - ETA: 0s - loss: 0.2506 - accuracy: 0.2551 6/15 [===========>..................] - ETA: 0s - loss: 0.2506 - accuracy: 0.2546 7/15 [=============>................] - ETA: 0s - loss: 0.2506 - accuracy: 0.2540 8/15 [===============>..............] - ETA: 0s - loss: 0.2506 - accuracy: 0.2530 9/15 [=================>............] - ETA: 0s - loss: 0.2506 - accuracy: 0.251710/15 [===================>..........] - ETA: 0s - loss: 0.2506 - accuracy: 0.251411/15 [=====================>........] - ETA: 0s - loss: 0.2506 - accuracy: 0.250912/15 [=======================>......] - ETA: 0s - loss: 0.2506 - accuracy: 0.250413/15 [=========================>....] - ETA: 0s - loss: 0.2506 - accuracy: 0.250014/15 [===========================>..] - ETA: 0s - loss: 0.2506 - accuracy: 0.249315/15 [==============================] - ETA: 0s - loss: 0.2506 - accuracy: 0.248615/15 [==============================] - 5s 64ms/step - loss: 0.2506 - accuracy: 0.2481
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [0 1 3 2 4] pred: [0.50909793 0.50345427 0.49981928 0.50084716 0.48746273]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 1 ============
-pred sorted: [0 1 3 4 2] pred: [0.51057553 0.5043667  0.4962094  0.49908784 0.49755684]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [0 1 4 3 2] pred: [0.51493186 0.5042412  0.49275318 0.49722928 0.50182533]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [0 2 1 3 4] pred: [0.51425064 0.5034934  0.5041804  0.49697205 0.496092  ]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 4 ============
-pred sorted: [0 1 2 3 4] pred: [0.5117313  0.51139677 0.5007771  0.49797773 0.49602383]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [0 1 3 2 4] pred: [0.51834625 0.49923542 0.4974581  0.49901932 0.48949662]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 6 ============
-pred sorted: [2 0 4 1 3] pred: [0.5149958  0.49535647 0.5150359  0.491968   0.49802387]
- Top predictions indices: [2] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [1 0 2 4 3] pred: [0.5147863  0.51506793 0.49933782 0.4950009  0.49813014]
- Top predictions indices: [1] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [0 1 3 4 2] pred: [0.5113916  0.50545335 0.49028173 0.5028976  0.49560538]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 9 ============
-pred sorted: [1 0 2 3 4] pred: [0.50983906 0.5162057  0.5060179  0.497735   0.4860748 ]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [0 4 1 3 2] pred: [0.51386523 0.5055251  0.48749852 0.49764463 0.50569975]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [0 3 1 2 4] pred: [0.5079721  0.5039621  0.49601758 0.50505567 0.494343  ]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 12 ============
-pred sorted: [0 1 3 2 4] pred: [0.50781083 0.5058995  0.4985607  0.50293136 0.49405333]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 13 ============
-pred sorted: [1 0 2 3 4] pred: [0.50668335 0.5126055  0.49602798 0.49598172 0.49122825]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [2 0 1 4 3] pred: [0.51300436 0.4966155  0.5144833  0.49192077 0.49503708]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 7 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_7"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_7 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_7 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_7 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 57s - loss: 0.2536 - accuracy: 0.2266 2/15 [===>..........................] - ETA: 0s - loss: 0.2534 - accuracy: 0.2246  3/15 [=====>........................] - ETA: 0s - loss: 0.2533 - accuracy: 0.2235 4/15 [=======>......................] - ETA: 0s - loss: 0.2533 - accuracy: 0.2223 5/15 [=========>....................] - ETA: 0s - loss: 0.2532 - accuracy: 0.2213 6/15 [===========>..................] - ETA: 0s - loss: 0.2532 - accuracy: 0.2200 7/15 [=============>................] - ETA: 0s - loss: 0.2532 - accuracy: 0.2189 8/15 [===============>..............] - ETA: 0s - loss: 0.2532 - accuracy: 0.2179 9/15 [=================>............] - ETA: 0s - loss: 0.2532 - accuracy: 0.217310/15 [===================>..........] - ETA: 0s - loss: 0.2531 - accuracy: 0.216811/15 [=====================>........] - ETA: 0s - loss: 0.2531 - accuracy: 0.216512/15 [=======================>......] - ETA: 0s - loss: 0.2531 - accuracy: 0.216113/15 [=========================>....] - ETA: 0s - loss: 0.2531 - accuracy: 0.215614/15 [===========================>..] - ETA: 0s - loss: 0.2531 - accuracy: 0.215315/15 [==============================] - ETA: 0s - loss: 0.2531 - accuracy: 0.214815/15 [==============================] - 5s 66ms/step - loss: 0.2531 - accuracy: 0.2144
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [0 3 2 4 1] pred: [0.5140858  0.48836905 0.5021825  0.5049767  0.49192846]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [0 2 1 4 3] pred: [0.5232433  0.50506717 0.5077177  0.4987536  0.4993957 ]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 2 ============
-pred sorted: [0 2 4 3 1] pred: [0.52203697 0.4895963  0.504226   0.497366   0.5035593 ]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [0 4 2 3 1] pred: [0.52264374 0.4984458  0.5137088  0.507834   0.5177107 ]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [0 2 3 4 1] pred: [0.51176536 0.5051579  0.5116846  0.5107382  0.5073608 ]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [0 3 2 4 1] pred: [0.5132283  0.49355862 0.5029514  0.5089954  0.49842155]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 6 ============
-pred sorted: [0 2 4 3 1] pred: [0.52112067 0.5006134  0.5156817  0.5006856  0.5031189 ]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 7 ============
-pred sorted: [0 2 4 3 1] pred: [0.51105005 0.4975981  0.50812644 0.4993298  0.5062437 ]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [0 2 4 3 1] pred: [0.5178234  0.49200356 0.5064519  0.5021807  0.504625  ]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 9 ============
-pred sorted: [0 4 3 2 1] pred: [0.51546466 0.50144386 0.5046541  0.50472116 0.50474393]
- Top predictions indices: [0] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [0 2 4 3 1] pred: [0.5176262  0.49807566 0.51329696 0.5032778  0.5055993 ]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
- ============ Sample: 11 ============
-pred sorted: [3 0 2 4 1] pred: [0.50618297 0.49919224 0.5008436  0.50991255 0.50011075]
- Top predictions indices: [3] vs. real classes indices: [3]
-Jaccard Score:  1.0
- 
- ============ Sample: 12 ============
-pred sorted: [3 0 2 1 4] pred: [0.5119387  0.50397897 0.5058547  0.51488835 0.4995696 ]
- Top predictions indices: [3] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 13 ============
-pred sorted: [0 2 4 1 3] pred: [0.5156298  0.50603396 0.51017123 0.49888697 0.50698435]
- Top predictions indices: [0] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [0 2 4 3 1] pred: [0.51611096 0.49718484 0.5139862  0.5066168  0.5118558 ]
- Top predictions indices: [0] vs. real classes indices: [0]
-Jaccard Score:  1.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 8 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_8"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_8 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_8 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_8 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 57s - loss: 0.2497 - accuracy: 0.2266 2/15 [===>..........................] - ETA: 0s - loss: 0.2499 - accuracy: 0.2148  3/15 [=====>........................] - ETA: 0s - loss: 0.2499 - accuracy: 0.2161 4/15 [=======>......................] - ETA: 0s - loss: 0.2499 - accuracy: 0.2231 5/15 [=========>....................] - ETA: 0s - loss: 0.2499 - accuracy: 0.2288 6/15 [===========>..................] - ETA: 0s - loss: 0.2499 - accuracy: 0.2311 7/15 [=============>................] - ETA: 0s - loss: 0.2499 - accuracy: 0.2330 8/15 [===============>..............] - ETA: 0s - loss: 0.2499 - accuracy: 0.2331 9/15 [=================>............] - ETA: 0s - loss: 0.2499 - accuracy: 0.233610/15 [===================>..........] - ETA: 0s - loss: 0.2499 - accuracy: 0.234111/15 [=====================>........] - ETA: 0s - loss: 0.2499 - accuracy: 0.234512/15 [=======================>......] - ETA: 0s - loss: 0.2499 - accuracy: 0.234713/15 [=========================>....] - ETA: 0s - loss: 0.2499 - accuracy: 0.235314/15 [===========================>..] - ETA: 0s - loss: 0.2499 - accuracy: 0.235615/15 [==============================] - ETA: 0s - loss: 0.2499 - accuracy: 0.235715/15 [==============================] - 5s 63ms/step - loss: 0.2499 - accuracy: 0.2359
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [3 0 1 2 4] pred: [0.5048699  0.50176024 0.5003802  0.5050571  0.49931958]
- Top predictions indices: [3] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [2 3 0 1 4] pred: [0.5029107  0.49811962 0.5104032  0.5043576  0.49170718]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [4 2 0 1 3] pred: [0.503279   0.49647924 0.5033043  0.49305424 0.5054614 ]
- Top predictions indices: [4] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [1 3 2 4 0] pred: [0.4896942  0.51220876 0.5018521  0.5074313  0.49270707]
- Top predictions indices: [1] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [1 0 3 2 4] pred: [0.50540674 0.508339   0.49437487 0.5010863  0.4943731 ]
- Top predictions indices: [1] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [0 4 1 3 2] pred: [0.5049797  0.49957752 0.49363202 0.49513328 0.5038823 ]
- Top predictions indices: [0] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 6 ============
-pred sorted: [4 0 3 1 2] pred: [0.5012047  0.4982441  0.49754912 0.5005755  0.5059097 ]
- Top predictions indices: [4] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [3 1 2 0 4] pred: [0.49586776 0.50338763 0.49916503 0.5130333  0.4864106 ]
- Top predictions indices: [3] vs. real classes indices: [3]
-Jaccard Score:  1.0
- 
- ============ Sample: 8 ============
-pred sorted: [1 0 3 2 4] pred: [0.5002977  0.5018597  0.49733582 0.4978653  0.49662942]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 9 ============
-pred sorted: [2 3 0 1 4] pred: [0.5034096  0.49926436 0.50861883 0.50358003 0.4915259 ]
- Top predictions indices: [2] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [3 0 2 1 4] pred: [0.5024547  0.49176687 0.50042254 0.5066402  0.49024305]
- Top predictions indices: [3] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 11 ============
-pred sorted: [2 3 0 1 4] pred: [0.50279963 0.4996242  0.5092029  0.50346065 0.49095336]
- Top predictions indices: [2] vs. real classes indices: [2]
-Jaccard Score:  1.0
- 
- ============ Sample: 12 ============
-pred sorted: [3 2 1 0 4] pred: [0.4968507  0.4994473  0.5003204  0.5088273  0.48442718]
- Top predictions indices: [3] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 13 ============
-pred sorted: [4 1 3 2 0] pred: [0.4960836  0.5023997  0.49970675 0.49978557 0.5041812 ]
- Top predictions indices: [4] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [3 1 2 0 4] pred: [0.49547282 0.5055853  0.502451   0.51155835 0.4944085 ]
- Top predictions indices: [3] vs. real classes indices: [4]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Exécution 9 : 
-BPIC15.csv
-Running Tensforflow with CPU
-GRU
-Trying to load: ../../datasets/multi-label/BPIC15.csv
-Categories:
-[0 1 2 3 4]
-output y_tr
-(3657, 154)
-(3657, 5)
-(1885, 154)
-(1885, 5)
-Test generation tensorFlow datasets
-End generating tensorFlow datasets
-Alphabet size:
-357
-Training a GRU
-Model: "sequential_9"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-embedding_9 (Embedding)      (None, 154, 357)          127449    
-_________________________________________________________________
-bidirectional_9 (Bidirection (None, 60)                70020     
-_________________________________________________________________
-dense_9 (Dense)              (None, 5)                 305       
-=================================================================
-Total params: 197,774
-Trainable params: 197,774
-Non-trainable params: 0
-_________________________________________________________________
-None
-Evaluate on test data
- 1/15 [=>............................] - ETA: 1:00 - loss: 0.2496 - accuracy: 0.1953 2/15 [===>..........................] - ETA: 0s - loss: 0.2495 - accuracy: 0.2129   3/15 [=====>........................] - ETA: 0s - loss: 0.2494 - accuracy: 0.2218 4/15 [=======>......................] - ETA: 0s - loss: 0.2494 - accuracy: 0.2288 5/15 [=========>....................] - ETA: 0s - loss: 0.2495 - accuracy: 0.2284 6/15 [===========>..................] - ETA: 0s - loss: 0.2495 - accuracy: 0.2287 7/15 [=============>................] - ETA: 0s - loss: 0.2495 - accuracy: 0.2283 8/15 [===============>..............] - ETA: 0s - loss: 0.2495 - accuracy: 0.2284 9/15 [=================>............] - ETA: 0s - loss: 0.2495 - accuracy: 0.227610/15 [===================>..........] - ETA: 0s - loss: 0.2495 - accuracy: 0.226711/15 [=====================>........] - ETA: 0s - loss: 0.2495 - accuracy: 0.225812/15 [=======================>......] - ETA: 0s - loss: 0.2495 - accuracy: 0.224613/15 [=========================>....] - ETA: 0s - loss: 0.2495 - accuracy: 0.223414/15 [===========================>..] - ETA: 0s - loss: 0.2496 - accuracy: 0.222415/15 [==============================] - ETA: 0s - loss: 0.2496 - accuracy: 0.221515/15 [==============================] - 5s 67ms/step - loss: 0.2496 - accuracy: 0.2207
-Generate predictions
-Analyzing predictions
- ============ Sample: 0 ============
-pred sorted: [1 0 3 2 4] pred: [0.50402117 0.51038337 0.49354053 0.49663356 0.48956636]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 1 ============
-pred sorted: [1 0 2 3 4] pred: [0.5029647  0.5033939  0.49643    0.49404836 0.488042  ]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 2 ============
-pred sorted: [1 0 3 2 4] pred: [0.50543267 0.51197165 0.49564892 0.49745432 0.48837456]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 3 ============
-pred sorted: [1 2 3 4 0] pred: [0.4885786  0.5109656  0.5046623  0.5028993  0.49676993]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 4 ============
-pred sorted: [1 2 4 3 0] pred: [0.49317077 0.5133536  0.5076281  0.4986677  0.49916783]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 5 ============
-pred sorted: [1 2 0 4 3] pred: [0.5001767  0.5036096  0.50089544 0.4888939  0.49949232]
- Top predictions indices: [1] vs. real classes indices: [3]
-Jaccard Score:  0.0
- 
- ============ Sample: 6 ============
-pred sorted: [1 3 2 0 4] pred: [0.4921735  0.51415825 0.4938004  0.50486666 0.48996267]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 7 ============
-pred sorted: [0 1 2 4 3] pred: [0.51198757 0.5005114  0.49677655 0.49462876 0.49555165]
- Top predictions indices: [0] vs. real classes indices: [1]
-Jaccard Score:  0.0
- 
- ============ Sample: 8 ============
-pred sorted: [1 2 4 3 0] pred: [0.49319366 0.5133298  0.5075867  0.49849313 0.49926668]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 9 ============
-pred sorted: [1 4 2 3 0] pred: [0.49462837 0.51509786 0.49873775 0.4984137  0.5018561 ]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 10 ============
-pred sorted: [1 0 2 3 4] pred: [0.50249094 0.5066741  0.49752468 0.49423397 0.49039093]
- Top predictions indices: [1] vs. real classes indices: [1]
-Jaccard Score:  1.0
- 
- ============ Sample: 11 ============
-pred sorted: [1 3 2 0 4] pred: [0.49184978 0.51162136 0.49350375 0.5034801  0.4897542 ]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
- ============ Sample: 12 ============
-pred sorted: [4 2 1 0 3] pred: [0.50021034 0.5026237  0.50281435 0.4942748  0.5044528 ]
- Top predictions indices: [4] vs. real classes indices: [4]
-Jaccard Score:  1.0
- 
- ============ Sample: 13 ============
-pred sorted: [1 0 2 3 4] pred: [0.50944906 0.5162808  0.5021094  0.5003237  0.4986686 ]
- Top predictions indices: [1] vs. real classes indices: [0]
-Jaccard Score:  0.0
- 
- ============ Sample: 14 ============
-pred sorted: [1 2 4 3 0] pred: [0.49265352 0.5132787  0.50675416 0.4979791  0.5054508 ]
- Top predictions indices: [1] vs. real classes indices: [2]
-Jaccard Score:  0.0
- 
-Generating classification report
-Generating confusion matrix
-Job end at Sat Nov  5 09:33:42 CET 2022

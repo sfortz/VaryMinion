@@ -19,7 +19,7 @@ TENSORFLOW_DEVICE = ''  # store if the type of computation is CPU or GPU
 def get_tf_device_type():
     """ This function determines the type of processor (CPU or GPU) used by tensorflow """
     global TENSORFLOW_DEVICE
-    if tf_test.is_gpu_available():
+    if tf.config.list_physical_devices('GPU'):
         print('Running Tensforflow with GPU, yay !')
         TENSORFLOW_DEVICE = tf_test.gpu_device_name()
     else:

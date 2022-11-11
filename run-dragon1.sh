@@ -11,7 +11,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem-per-cpu=12288 # 12GB
 #
-#SBATCH --array=3
+#SBATCH --array=3-5
 #SBATCH --output="slurm-output/slurm-%A_%a.out"
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be
@@ -26,21 +26,11 @@ cd $CECIHOME/VaryMinions
 echo "ceci-venv activated"
 
 module load releases/2020b
-module load Python/3.8.6-GCCcore-10.2.0
 module load foss/2020b
 module load cuDNN/8.0.4.30-CUDA-11.1.1
 module load CUDA/11.1.1-GCC-10.2.0
 
 echo "module loaded"
-
-pip3 install numpy
-pip3 install pandas
-pip3 install scikit-learn
-pip3 install tensorflow
-pip3 install tensorflow-gpu
-
-echo "dependencies installed"
-pip3 list
 
 mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/

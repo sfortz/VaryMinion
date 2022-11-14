@@ -9,7 +9,7 @@
 #SBATCH --mem-per-cpu=4000 # 4GB
 #SBATCH --partition=gpu-debug
 #
-#SBATCH --array=6-10
+#SBATCH --array=11-20
 #SBATCH --output="slurm-output/slurm-%A_%a.out"
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be

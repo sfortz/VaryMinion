@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --gres="gpu:1"
 #SBATCH --cpus-per-task=16
-#SBATCH --mem-per-cpu=16000 # 16GB 
+#SBATCH --mem-per-cpu=4000 # 4GB
 #SBATCH --partition=gpu
 #
 #SBATCH --array=1-5

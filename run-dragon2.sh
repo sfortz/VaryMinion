@@ -9,7 +9,7 @@
 #SBATCH --mem-per-cpu=3072 # 3GB
 #SBATCH --partition=gpu
 #
-#SBATCH --array=4-20
+#SBATCH --array=6-20
 #SBATCH --output="slurm-output/slurm-%A_%a.out"
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be
@@ -18,17 +18,15 @@
 # ------------------------- work -------------------------
 
 cd
-source ceci-venv/bin/activate
-cd $CECIHOME/VaryMinions
-
-echo "ceci-venv activated"
-
 module load foss
 module load releases/2021b
 module load TensorFlow/2.7.1-foss-2021b-CUDA-11.4.1
 module load scikit-learn/1.0.2-foss-2021b
-
 echo "module loaded"
+
+source ceci-venv/bin/activate
+echo "ceci-venv activated"
+cd $CECIHOME/VaryMinions
 
 mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/

@@ -31,7 +31,6 @@ source ceci-venv/bin/activate
 echo "ceci-venv activated"
 cd $CECIHOME/VaryMinions
 
-
 mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/
 cd $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/scripts/training_NN/

@@ -18,14 +18,16 @@
 # ------------------------- work -------------------------
 
 cd
-source ceci-venv/bin/activate
-cd $CECIHOME/VaryMinions
-
 module load releases/2020b
 module load Python/3.8.6-GCCcore-10.2.0
 module load foss/2020b
 module load cuDNN/8.0.4.30-CUDA-11.1.1
 module load CUDA/11.1.1-GCC-10.2.0
+echo "module loaded"
+
+source ceci-venv/bin/activate
+echo "ceci-venv activated"
+cd $CECIHOME/VaryMinions
 
 mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/

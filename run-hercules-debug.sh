@@ -9,14 +9,13 @@
 #SBATCH --mem-per-cpu=4000 # 4GB
 #SBATCH --partition=gpu-debug
 #
-#SBATCH --array=11-15
+#SBATCH --array=6-10
 #SBATCH --output="slurm-output/slurm-%A_%a.out"
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be
 #SBATCH --mail-type=ALL
 #
 # ------------------------- work -------------------------
-
 
 cd
 module load releases/2020b
@@ -34,7 +33,7 @@ mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/
 cd $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/scripts/training_NN/
 echo "Job start at $(date)"
-srun python3 job-array-claroline-10-dis.py
+srun python3 job-array-claroline-50-rand.py
 rsync -azu $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/results/training_metrics/ $CECIHOME/VaryMinions/results/training_metrics/
 echo "Job end at $(date)"
 rm -rf $LOCALSCRATCH/$SLURM_JOB_ID

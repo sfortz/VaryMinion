@@ -1,4 +1,5 @@
 import os
+import subprocess
 import training_Model as minion
 
 idx = int(os.environ["SLURM_ARRAY_TASK_ID"])
@@ -78,3 +79,6 @@ if __name__ == "__main__":
     for i in range(0, nb_iterations):
         print("Exécution " + str(i) + " : ")
         minion.main(ds, m, True, e, u, bs, 0.66, act, l)
+        sourceDir = os.path.expandvars("$LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/results/training_metrics/")
+        destDir = os.path.expandvars("$CECIHOME/VaryMinions/results/training_metrics/")
+        subprocess.call(["rsync", "-azu", sourceDir, destDir])

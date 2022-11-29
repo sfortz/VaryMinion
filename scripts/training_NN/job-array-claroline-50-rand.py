@@ -1,6 +1,6 @@
 import os
-import training_Model as minion
 import subprocess
+import training_Model as minion
 
 idx = int(os.environ["SLURM_ARRAY_TASK_ID"])
 datasets = ["claroline-rand_50.csv"]

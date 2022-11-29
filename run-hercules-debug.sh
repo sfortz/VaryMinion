@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --gres="gpu:1"
 #SBATCH --cpus-per-task=8
-#SBATCH --mem-per-cpu=4000 # 4GB
+#SBATCH --mem-per-cpu=2700 # 2,7GB
 #SBATCH --partition=gpu-debug
 #
 #SBATCH --array=11-15

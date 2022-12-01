@@ -11,7 +11,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem-per-cpu=4000 # 4GB
 #
-#SBATCH --array=1-5
+#SBATCH --array=8,12,13
 #SBATCH --output="slurm-output/slurm-%A_%a.out"
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be

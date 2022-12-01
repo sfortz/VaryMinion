@@ -10,7 +10,7 @@ batch_sizes = [128]
 units = [30]
 activations = ["tanh", "sigmoid"]
 losses = ["bin_ce", "bin_ce-logits", "mse", "jaccard", "manhattan"]
-nb_iterations = 2
+nb_iterations = 1
 
 
 def get_number_of_executions():

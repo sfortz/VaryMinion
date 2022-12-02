@@ -39,9 +39,10 @@ def parse_metric(txt_file, csv_file, metric):
         if metric == "support":
             regex = r"\d+"
         else:
-            regex = r"\d\.\d*|\d\.\d*e[+|-]\d\d"
+            regex = r"\d\.\d*(?:e[+|-]\d\d)?"  # regex = r"\d\.\d*|\d\.\d*e[+|-]\d\d"
 
         scores = re.findall(regex, row)
+        scores = list(map(float, scores))
         writer.writerow(scores)
 
     in_file.close()

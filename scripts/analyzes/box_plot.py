@@ -1,6 +1,7 @@
 import os
 import re
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -67,25 +68,50 @@ def read_csv_file(metric_directory):
             if txt_filename.is_file() and txt_filename.name.endswith('.csv'):
                 name = txt_filename.name[:-4]
                 input = pd.read_csv(directory + txt_filename.name, skiprows=1, header=None)
-                dataset, model, nb_epoch, nb_unit, batch_size, training_set_size, processor, backend, layer, loss, activation = parse_file_name(name)
+                dataset, model, nb_epoch, nb_unit, batch_size, training_set_size, processor, backend, layer, loss, activation = parse_file_name(
+                    name)
                 data.append([dataset, model, loss, activation, input])
+                frame = pd.DataFrame(data, columns=['Dataset', 'Model', 'Loss', 'Activation', 'Data'])
+                frame.sort_values(by=['Dataset', 'Model', 'Loss', 'Activation'], inplace=True)
             else:
-                print('ERROR:' + str(txt_filename) + 'is not a csv file.')
-        return data
+                print('WARNING:' + str(txt_filename) + 'is not a csv file and will be ignored.')
+        return frame
 
 
-def create_boxplot(output_directory, ds, metric):
+def weighted_mean(distribution):
 
+    support_directory = "training_support/"
+    data = read_csv_file(support_directory)
+
+    avgs = []
+    for config in data.index:
+        w = data['Data'][config].values
+        d = distribution['Data'][config].values
+        avg = []
+        for weights, distrib in zip(w, d):
+            weighted_avg = round(np.average(distrib, weights=weights), 4)
+            avg.append(weighted_avg)
+        avgs.append(avg)
+
+    distribution['Data'] = pd.DataFrame(np.array(avgs))
+
+
+def create_boxplot(directory, ds, metric):
     data = []
     labels = []
     dataset = ""
-    for ind in ds.index:
-        dataset = ds['Dataset'][ind]
-        model = ds['Model'][ind]
-        loss = ds['Loss'][ind]
-        activation = ds['Activation'][ind]
+
+    for config in ds.index:
+        dataset = ds['Dataset'][config]
+        model = ds['Model'][config]
+        loss = ds['Loss'][config]
+        activation = ds['Activation'][config]
         labels += [str(model) + " " + str(loss) + " " + str(activation)]
-        data.append(ds['Data'][ind][1])
+
+        if metric == "Accuracy":
+            data.append(ds['Data'][config][1])
+        else:
+            data.append(ds['Data'][config])
 
     fig = plt.figure(figsize=(10, 7))
 
@@ -99,30 +125,33 @@ def create_boxplot(output_directory, ds, metric):
     # Saving the figure.
     title = str(metric) + " for " + str(dataset)
     plt.title(title)
-    plt.savefig(output_directory + dataset + ".png", bbox_inches="tight")
+
+    plt.savefig("../../results/box_plots/" + directory + dataset + ".png", bbox_inches="tight")
     plt.close(fig)
 
 
 if __name__ == '__main__':
 
-    output_directory = "../../results/box_plots/"
-
     loss_acc_time_directory = "training_loss_acc_time/"
     precision_directory = "training_precision/"
     recall_directory = "training_recall/"
     f1score_directory = "training_f1/"
-    support_directory = "training_support/"
 
-    data = read_csv_file(loss_acc_time_directory)
+    # metrics = ["Accuracy", "Precision", "Recall", "F1 Score"]
+    # directories = [loss_acc_time_directory, precision_directory, recall_directory, f1score_directory]
+    metrics = ["Precision"]
+    directories = [precision_directory]
 
-    frame = pd.DataFrame(data, columns=['Dataset', 'Model', 'Loss', 'Activation', 'Data'])
-    # frame.sort_values(by=['Dataset', 'Model', 'Type', 'Epochs', 'Units'], inplace=True)
+    for metric, dir in zip(metrics, directories):
 
-    bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50 = [x for _, x in frame.groupby( frame['Dataset'])]
+        print("Generating boxplot for " + metric)
+        data = read_csv_file(dir)
+        weighted_mean(data)
+        bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50 = [x for _, x in
+                                                                                                    data.groupby(data[
+                                                                                                                     'Dataset'])]
+        datasets = [bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50]
+        # datasets = [bpic15]
 
-    create_boxplot(output_directory, bpic15, "Accuracy")
-    create_boxplot(output_directory, bpic20, "Accuracy")
-    create_boxplot(output_directory, claroline_dis_10, "Accuracy")
-    create_boxplot(output_directory, claroline_rand_10, "Accuracy")
-    create_boxplot(output_directory, claroline_dis_50, "Accuracy")
-    create_boxplot(output_directory, claroline_rand_50, "Accuracy")
+        for ds in datasets:
+            create_boxplot(dir, ds, metric)

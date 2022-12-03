@@ -9,7 +9,7 @@
 #SBATCH --mem-per-cpu=3072 # 3GB
 #SBATCH --partition=gpu
 #
-#SBATCH --array=6-20
+#SBATCH --array=13,17
 #SBATCH --output="slurm-output/slurm-%A_%a.out"
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be

@@ -137,21 +137,20 @@ if __name__ == '__main__':
     recall_directory = "training_recall/"
     f1score_directory = "training_f1/"
 
-    # metrics = ["Accuracy", "Precision", "Recall", "F1 Score"]
-    # directories = [loss_acc_time_directory, precision_directory, recall_directory, f1score_directory]
-    metrics = ["Precision"]
-    directories = [precision_directory]
+    metrics = ["Accuracy", "Precision", "Recall", "F1 Score"]
+    directories = [loss_acc_time_directory, precision_directory, recall_directory, f1score_directory]
 
     for metric, dir in zip(metrics, directories):
 
         print("Generating boxplot for " + metric)
         data = read_csv_file(dir)
-        weighted_mean(data)
+        if metric != "Accuracy":
+            weighted_mean(data)
+
         bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50 = [x for _, x in
                                                                                                     data.groupby(data[
                                                                                                                      'Dataset'])]
         datasets = [bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50]
-        # datasets = [bpic15]
 
         for ds in datasets:
             create_boxplot(dir, ds, metric)

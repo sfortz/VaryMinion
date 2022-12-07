@@ -2,6 +2,7 @@
 # Submission script for Hercules2
 #SBATCH --job-name=VaryMinions
 #SBATCH --time=1-00:00:00 # days-hh:mm:ss
+#SBATCH --begin=2022-12-07T01:00:00
 #
 #SBATCH --ntasks=1
 #SBATCH --gres="gpu:1"
@@ -9,7 +10,7 @@
 #SBATCH --mem-per-cpu=3072 # 3GB
 #SBATCH --partition=gpu-debug
 #
-#SBATCH --array=15,18
+#SBATCH --array=18
 #SBATCH --output="slurm-output/slurm-%A_%a.out"
 #
 #SBATCH --mail-user=sophie.fortz@unamur.be
@@ -33,7 +34,7 @@ mkdir -p $LOCALSCRATCH/$SLURM_JOB_ID
 rsync -azu $CECIHOME/VaryMinions $LOCALSCRATCH/$SLURM_JOB_ID/
 cd $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/scripts/training_NN/
 echo "Job start at $(date)"
-srun python3 job-array-claroline-50-rand.py
+srun python3 job-array-claroline-50-dis.py
 rsync -azu $LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/results/training_metrics/ $CECIHOME/VaryMinions/results/training_metrics/
 echo "Job end at $(date)"
 rm -rf $LOCALSCRATCH/$SLURM_JOB_ID

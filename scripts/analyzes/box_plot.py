@@ -3,6 +3,7 @@ import re
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import statistics as stat
 
 
 def parse_match(match, regex):
@@ -83,17 +84,11 @@ def weighted_mean(distribution):
     support_directory = "training_support/"
     data = read_csv_file(support_directory)
 
-    avgs = []
     for config in data.index:
-        w = data['Data'][config].values
-        d = distribution['Data'][config].values
-        avg = []
-        for weights, distrib in zip(w, d):
-            weighted_avg = round(np.average(distrib, weights=weights), 4)
-            avg.append(weighted_avg)
-        avgs.append(avg)
-
-    distribution['Data'] = pd.DataFrame(np.array(avgs))
+        w = data['Data'][config]
+        d = distribution['Data'][config]
+        weighted_distrib = round(d * w, 4)
+        distribution['Data'][config] = weighted_distrib.mean(axis=1)
 
 
 def create_boxplot(directory, ds, metric):

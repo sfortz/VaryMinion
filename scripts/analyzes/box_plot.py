@@ -1,9 +1,7 @@
 import os
 import re
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-import statistics as stat
 
 
 def parse_match(match, regex):
@@ -80,7 +78,6 @@ def read_csv_file(metric_directory):
 
 
 def weighted_mean(distribution):
-
     support_directory = "training_support/"
     data = read_csv_file(support_directory)
 
@@ -88,7 +85,7 @@ def weighted_mean(distribution):
         w = data['Data'][config]
         d = distribution['Data'][config]
         weighted_distrib = round(d * w, 4)
-        distribution['Data'][config] = weighted_distrib.mean(axis=1)
+        distribution['Data'][config] = weighted_distrib.sum(axis=1) / w.sum(axis=1)
 
 
 def create_boxplot(directory, ds, metric):
@@ -121,7 +118,8 @@ def create_boxplot(directory, ds, metric):
     title = str(metric) + " for " + str(dataset)
     plt.title(title)
 
-    plt.savefig("../../results/box_plots/" + directory + dataset + ".png", bbox_inches="tight")
+    plt.savefig("../../results/box_plots/" + directory + "figure_" + metric + "-" + dataset + ".png",
+                bbox_inches="tight")
     plt.close(fig)
 
 
@@ -132,7 +130,7 @@ if __name__ == '__main__':
     recall_directory = "training_recall/"
     f1score_directory = "training_f1/"
 
-    metrics = ["Accuracy", "Precision", "Recall", "F1 Score"]
+    metrics = ["Accuracy", "Precision", "Recall", "F1-Score"]
     directories = [loss_acc_time_directory, precision_directory, recall_directory, f1score_directory]
 
     for metric, dir in zip(metrics, directories):

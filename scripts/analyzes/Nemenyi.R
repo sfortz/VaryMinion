@@ -9,13 +9,15 @@ loadPackages<-function(requiredPackages){
 }
 
 
+# The 3d column of df should contain values corresponding to measure
 nemenyi <- function(df, measure, pvalue, outputPath, title){
+    print('This is R code!')
     packages <- c("ggplot2","xgboost","mlr3","mlr3benchmark","mlr3learners")
     loadPackages(packages)     # Install and/or load packages
 
     df$learners <- factor(df$learners)
     df$tasks <- factor(df$tasks)
-    df$data <- as.numeric(df$data)
+    df[,3] <- as.numeric(df[,3])
 
     bm = as.BenchmarkAggr(df, task_id = "tasks", learner_id = "learners", independent = TRUE, strip_prefix = FALSE)
 
@@ -25,8 +27,8 @@ nemenyi <- function(df, measure, pvalue, outputPath, title){
     ranks = bm$rank_data()
     scores = rowMeans(ranks[,c(-1)])
 
-    CD_style1 = autoplot(bm, type = "cd",  meas = measure, test = "nemenyi", p.value = pvalue, style = 1, minimize = FALSE)
-    CD_style2 = autoplot(bm, type = "cd",  meas = measure, test = "nemenyi", p.value = pvalue, style = 2, minimize = FALSE)
+    CD_style1 = autoplot(bm, type = "cd",  meas = measure, test = "nemenyi", p.value = pvalue, style = 1, minimize = FALSE) + theme_bw()
+    CD_style2 = autoplot(bm, type = "cd",  meas = measure, test = "nemenyi", p.value = pvalue, style = 2, minimize = FALSE) + theme_bw()
     ggsave(paste(title, "_CD_style1.png", sep =""), CD_style1, path=outputPath)
     ggsave(paste(title, "_CD_style2.png", sep =""), CD_style2, path=outputPath)
 

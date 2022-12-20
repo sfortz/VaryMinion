@@ -1,11 +1,12 @@
-from scipy import stats
-import scikit_posthocs as sp
 import numpy as np
 import pandas as pd
+import scikit_posthocs as sp
+from scipy import stats
+from csv_reader import read_csv_file
+
 import rpy2.robjects as ro
-from rpy2.robjects.packages import importr
 from rpy2.robjects import pandas2ri
-from rpy2.robjects.conversion import localconverter
+from rpy2.robjects.packages import importr
 
 
 def compute_critical_difference(avg_ranks, N, alpha="0.05", type="nemenyi"):
@@ -61,19 +62,58 @@ def r_stat(df, m, n, pvalue, title):
     output_directory = "../../results/statistics"
 
     importr('base')
-    with localconverter(ro.default_converter + pandas2ri.converter):
+    with ro.conversion.localconverter(ro.default_converter + pandas2ri.converter):
         #Invoking the R function and getting the result
         df_result_r = r_function(df, m, pvalue, output_directory, title)
 
         #Converting it back to a pandas dataframe.
         pd_from_r_df = ro.conversion.rpy2py(df_result_r)
-        print("Result: ", pd_from_r_df)
+        print("Scores: ", sorted(pd_from_r_df))
 
         cd = compute_critical_difference(pd_from_r_df, n, alpha="0.05", type="nemenyi")
         print('cd = ', cd)
 
 
+def get_dataset(ds):
+
+    colNames = ["learners", "tasks", "accuracy"]
+
+    frames = []
+    for config in ds.index:
+        dataset = ds['Dataset'][config]
+        model = ds['Model'][config]
+        loss = ds['Loss'][config]
+        activation = ds['Activation'][config]
+        data = ds['Data'][config][1]
+        sep = " "
+
+        rows = pd.DataFrame(index=range(0, 10), columns=colNames)
+        rows["learners"] = model + sep + loss + sep + activation
+
+        tasks = []
+        for j in range(1,11):
+            tasks += [dataset + '-ite_' + str(j)]
+
+        rows["tasks"] = tasks
+        rows["accuracy"] = round(data, 4)
+        frames.append(rows)
+
+    df = pd.concat(frames, ignore_index=True)
+    return df
+
+
 def r_launcher():
+
+    # Reading and processing data
+    loss_acc_time = read_csv_file("training_loss_acc_time/")
+    df = get_dataset(loss_acc_time)
+
+    title = "All_Configs_Accuracy"
+
+    r_stat(df, 'accuracy', 10, 0.05, title)
+
+
+def r_test_launcher():
 
     # Reading and processing data
     colNames = ["learners", "tasks", "data"]

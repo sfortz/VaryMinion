@@ -9,7 +9,7 @@ from rpy2.robjects.packages import importr
 def r_stat(df, m, n, pvalue, title):
     # Defining the R script and loading the instance in Python
     r = ro.r
-    r['source']('Nemenyi.R')
+    r['source']('stat.R')
     # Loading the function we have defined in R.
     r_function = ro.globalenv['multiCompare']
 

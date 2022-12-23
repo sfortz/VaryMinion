@@ -8,36 +8,56 @@ loadPackages<-function(requiredPackages){
     }
 }
 
+multiCompare <- function(df, measure, pvalue, outputPath, title){
 
-# The 3d column of df should contain values corresponding to measure
-nemenyi <- function(df, measure, pvalue, outputPath, title){
-    print('This is R code!')
-    packages <- c("ggplot2","xgboost","mlr3","mlr3benchmark","mlr3learners")
+    packages <- c("tsutils")
     loadPackages(packages)     # Install and/or load packages
+
+    for(i in 1:ncol(df)) {       # for-loop over columns
+      df[,i] <- as.numeric(1-df[,i])
+    }
+
+    title <- paste(outputPath,title, sep ="/")
+    title <- paste(title,".png", sep ="")
+
+    resfactor = 4
+    png(filename=title, res = 72*resfactor, height=480*resfactor, width=480*resfactor)
+    nem = nemenyi(df, plottype = "vmcb", conf.level = 1.0 - pvalue) # Nemenyi post-hoc analysis
+    dev.off()
+}
+
+boxplots <- function(df, outputPath, title){
+    packages <- c("ggplot2")
+    loadPackages(packages)     # Install and/or load packages
+
+    df$learners <- factor(df$learners)
+    df$tasks <- factor(df$tasks)
+    df$metric <- as.numeric(df$metric)
+
+    bp= ggplot(data=df, aes(x=learners, y=metric)) + geom_boxplot() #+ theme_light()
+
+    ggsave(title, bp, path=outputPath)
+}
+
+commented <- function(){
 
     df$learners <- factor(df$learners)
     df$tasks <- factor(df$tasks)
     df[,3] <- as.numeric(df[,3])
 
-    bm = as.BenchmarkAggr(df, task_id = "tasks", learner_id = "learners", independent = TRUE, strip_prefix = FALSE)
+    Name <- c("Jon", "Bill", "Maria", "Ben", "Tina")
+    Age <- c(23, 41, 32, 58, 26)
+    Age2 <- c(2, 57, 22, 18, 90)
+    Age3 <- c(63, 12, 34, 86, 99)
 
-    bm$friedman_test()
-    ph = bm$friedman_posthoc(meas = measure, p.value = pvalue) # Nemenyi post-hoc analysis
+    df <- data.frame(name=Name, age=c(Age, Age2, Age3))
 
-    ranks = bm$rank_data()
-    scores = rowMeans(ranks[,c(-1)])
+    # create a boxplot by using geom_boxplot() function of ggplot2 package
+    bp=ggplot(data=df, aes(x=Name)) #, aes(x="name", y="ages")) + geom_boxplot()
 
-    CD_style1 = autoplot(bm, type = "cd",  meas = measure, test = "nemenyi", p.value = pvalue, style = 1, minimize = FALSE) + theme_bw()
-    CD_style2 = autoplot(bm, type = "cd",  meas = measure, test = "nemenyi", p.value = pvalue, style = 2, minimize = FALSE) + theme_bw()
-    ggsave(paste(title, "_CD_style1.png", sep =""), CD_style1, path=outputPath)
-    ggsave(paste(title, "_CD_style2.png", sep =""), CD_style2, path=outputPath)
+    ggplot(data=df, aes(x=name, y=age)) + geom_boxplot()
 
-    fn = autoplot(bm, type = "fn", meas = measure, p.value = pvalue, minimize = FALSE)
-    mean = autoplot(bm, type = "mean", meas = measure, minimize = FALSE)
-    box = autoplot(bm, type = "box", meas = measure, minimize = FALSE)
-    ggsave(paste(title, "_fn.png", sep =""), fn, path=outputPath)
-    ggsave(paste(title, "_mean.png", sep =""), mean, path=outputPath)
-    ggsave(paste(title, "_box.png", sep =""), box, path=outputPath)
+    ggsave(paste(title, "_boxplot.png", sep =""), bp, path=outputPath)
 
     return(scores)
 }

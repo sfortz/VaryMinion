@@ -1,5 +1,12 @@
+import pandas as pd
+
 from csv_reader import read_csv_file
 import matplotlib.pyplot as plt
+
+import rpy2.robjects as ro
+from rpy2.robjects import pandas2ri
+from rpy2.robjects.packages import importr
+
 
 def weighted_mean(distribution):
     support_directory = "training_support/"
@@ -32,11 +39,11 @@ def create_boxplot(directory, ds, metric):
     fig = plt.figure(figsize=(10, 7))
 
     # Creating axes instance
-    ax = fig.add_axes([0, 0, 1, 1])
+    bp = fig.add_axes([0, 0, 1, 1])
 
     # Creating plot
-    bp = ax.boxplot(data, labels=labels)
-    plt.setp(ax.get_xticklabels(), rotation=90)
+    bp.boxplot(data, labels=labels)
+    plt.setp(bp.get_xticklabels(), rotation=90)
 
     # Saving the figure.
     title = str(metric) + " for " + str(dataset)
@@ -45,6 +52,50 @@ def create_boxplot(directory, ds, metric):
     plt.savefig("../../results/box_plots/" + directory + "figure_" + metric + "-" + dataset + ".png",
                 bbox_inches="tight")
     plt.close(fig)
+
+
+def get_dataset(ds):
+
+    colNames = ["learner", "dataset", "metric"]
+
+    frames = []
+    for config in ds.index:
+        dataset = ds['Dataset'][config]
+        model = ds['Model'][config]
+        loss = ds['Loss'][config]
+        activation = ds['Activation'][config]
+
+        sep = " "
+        rows = pd.DataFrame(index=range(0, 10), columns=colNames)
+        rows["learner"] = model + sep + loss + sep + activation
+        rows["dataset"] = dataset
+
+        if(metric == "Accuracy"):
+            rows["metric"] = ds['Data'][config][1]
+        else:
+            rows["metric"] = ds['Data'][config]
+
+        frames.append(rows)
+
+    df = pd.concat(frames, ignore_index=True)
+    return df
+
+
+def create_r_boxplot(ds, metric):
+
+    # Defining the R script and loading the instance in Python
+    r = ro.r
+    r['source']('stat.R')
+    # Loading the function we have defined in R.
+    r_function = ro.globalenv['boxplots']
+
+    output_directory = "../../results/box_plots"
+
+    frame = get_dataset(ds)
+    importr('base')
+    with ro.conversion.localconverter(ro.default_converter + pandas2ri.converter):
+        #Invoking the R function
+        r_function(frame, output_directory, metric)
 
 
 if __name__ == '__main__':
@@ -64,10 +115,4 @@ if __name__ == '__main__':
         if metric != "Accuracy":
             weighted_mean(data)
 
-        bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50 = [x for _, x in
-                                                                                                    data.groupby(data[
-                                                                                                                     'Dataset'])]
-        datasets = [bpic15, bpic20, claroline_dis_10, claroline_dis_50, claroline_rand_10, claroline_rand_50]
-
-        for ds in datasets:
-            create_boxplot(dir, ds, metric)
+        create_r_boxplot(data, metric)

@@ -8,6 +8,7 @@ loadPackages<-function(requiredPackages){
     }
 }
 
+
 multiCompare <- function(df, measure, pvalue, outputPath, title){
 
     packages <- c("tsutils")
@@ -26,38 +27,26 @@ multiCompare <- function(df, measure, pvalue, outputPath, title){
     dev.off()
 }
 
-boxplots <- function(df, outputPath, title){
+
+
+boxplots <- function(df, outputPath, metric_name){
     packages <- c("ggplot2")
     loadPackages(packages)     # Install and/or load packages
 
-    df$learners <- factor(df$learners)
-    df$tasks <- factor(df$tasks)
+    df$learners <- factor(df$learner)
+    df$dataset <- factor(df$dataset)
     df$metric <- as.numeric(df$metric)
 
-    bp= ggplot(data=df, aes(x=learners, y=metric)) + geom_boxplot() #+ theme_light()
+    order = c('BPIC15', 'BPIC20', 'claroline-dis_10', 'claroline-rand_10', 'claroline-dis_50', 'claroline-rand_50')
 
+    bp = ggplot(data=df, aes(x=learners, y=metric))
+    bp = bp + geom_boxplot(linewidth=0.2, outlier.size = 1)
+    bp =  bp + facet_wrap(~factor(dataset, levels=order), ncol = 2)
+    bp =  bp + theme(axis.text.x = element_text(angle = 90))
+    bp = bp + labs(x="RNN Configurations", y=metric_name)
+    bp = bp + theme(axis.text.x=element_text(size=9))
+
+    title <- paste("figure_", metric_name, sep ="")
+    title <- paste(title,".png", sep ="")
     ggsave(title, bp, path=outputPath)
-}
-
-commented <- function(){
-
-    df$learners <- factor(df$learners)
-    df$tasks <- factor(df$tasks)
-    df[,3] <- as.numeric(df[,3])
-
-    Name <- c("Jon", "Bill", "Maria", "Ben", "Tina")
-    Age <- c(23, 41, 32, 58, 26)
-    Age2 <- c(2, 57, 22, 18, 90)
-    Age3 <- c(63, 12, 34, 86, 99)
-
-    df <- data.frame(name=Name, age=c(Age, Age2, Age3))
-
-    # create a boxplot by using geom_boxplot() function of ggplot2 package
-    bp=ggplot(data=df, aes(x=Name)) #, aes(x="name", y="ages")) + geom_boxplot()
-
-    ggplot(data=df, aes(x=name, y=age)) + geom_boxplot()
-
-    ggsave(paste(title, "_boxplot.png", sep =""), bp, path=outputPath)
-
-    return(scores)
 }

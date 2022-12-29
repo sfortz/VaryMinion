@@ -5,13 +5,15 @@ This repository gathers all materials that were used to conduct experiments to p
 ## Prerequisites
 
 Our experiments were ran on on two different HPC facilities hosted by the [CECI](http://www.ceci-hpc.be/). 
-All our scripts are written in Python3 to ensure portability. We have used [Keras](https://keras.io/) along with the TensorFlow framework.
+All our scripts are written in Python3 to ensure portability. We have used [Keras](https://keras.io/) along with the 
+[TensorFlow](https://www.tensorflow.org/) framework.
 
 ## Running setup
 
 On the first cluster, called Dragon1, we used 1  CPU  with  8  cores  per  task  (Intel  Sandy  Bridge,  E5-2650  processors  at2.00GHz) with a Tesla Kepler accelerator (K20m, 1.1 Tflops, float64). 
 For runs on Dragon2, we used 1 CPU with 12 cores (Intel SkyLake, Xeon 6126 processors at 2.60 GHz) associated with a NVidia Tesla Volta V100 accelerator (5120 CUDA Cores, 16GB HBM2, 7.5 TFlops, double precision). 
-Each CPU has been allocated 12 GB of RAM. [Slurm](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html) is the resource manager and job scheduler used on these infrastructures. To use the juob scheduler, we can use the scripts _run-dragon*.sh_ (in the directory root).
+On the third cluster, Hercules, we had access to 1 CPU with 8 cores per task (Intel Sandy Bridge,  Xeon E5-2660 processors at 2.20 GHz) with an NVidia GeForce accelerator (RTX 2080 Ti, 7.5 TFlops, double precision).
+Each CPU has been allocated 3 GB of RAM. [Slurm](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html) is the resource manager and job scheduler used on these infrastructures. To use the job scheduler, we can use the scripts _run-*.sh_ (in the directory root).
 
 ## Organisation of the repo
 
@@ -28,8 +30,13 @@ This folder contains all the scripts that were used to conduct experiments. It i
 The _analyzes_ folder is composed of several files: 
  - _alphabet\_coverage_ is about knowing if the number of traces per process variant is balanced (which would ease further training) and if not, is there any risk that some process variant are not represented in the training set? To do so, we create a dictionary of symbols, prepare training and test sets as we were about to train a model and count the number of symbols that were not encountered in the training set. 
  - _DS\_analyse_ is a script conducting some analyzes to evaluate the difficulty to learn a classifier.
- - _results\_analyse_ is about generating tables (both in tex and pdf format) and creating plots out from analyzes.
+ - _writer\_latex_ is about generating tables (both in tex and pdf format) and creating plots out from analyzes.
  - _writer\_csv_ is simply a parser that turns output text files into csv.
+ - _csv\_reader_ contains utilities to read csv metrics and ease analysis.
+ - _box\_plot_ creates box-plots from the csv files.
+ - _statistics_ performs a Friedman's test along with a Nemenyi's post-hoc analysis to compare the different parameterisations.
+ - _stat.R_ is called by _box\_plot_ and _statistics_ to delegate part of the treatment to R.
+ - _get\_total\_time_ retrieves the total time required to perform all executions.
  
 The _Training_NN_ folder contains all scripts to learn different models with different parameterization on the datasets used in the paper. 
  - _training\_Model_ is some kind of interface that ease the training of any RNN following the same procedure. It is also in charge of managing the parameters given when the script is launched. This script is called by _DS*-*unit.py_ scripts.
@@ -40,19 +47,24 @@ The _Training_NN_ folder contains all scripts to learn different models with dif
  - _DS*-*unit.py_ and _Claroline-*.py_ scripts are examples of usage of the learning framework.  
  - _job-array-*.py_ scripts are examples of usage of the learning framework as an array job for SLURM.  
  
-## Execution
+### Slurm-output
 
-There are three main ways to run the framework:
- - Using the _vary\_minion_ entry point either from another script (see _DS*-*unit.py_ for examples) or 
-   from the terminal: `python3 vary_minion.py  --dataset BPIC15.csv --model_type LSTM --nb_epochs 10 --nb_units 10 --training_ratio 66.  This commands trains a LSTM with 10 epochs and 10 units and 66% of training data for the BPIC15.csv datasets. 
- - Using  _training\_Model, same options as above.
- - Using _job-array-*.py_ scripts with SLURM job scheduler. Examples of the SLURM bash scripts we used are in the root of this repository (_run-dragon*.sh_).
+This folder contains all the output files from the clusters. Each file register the standard output of a specific job. 
+They are very useful for and debugging purposes.
 
 ### Results
 
-The _Results_ folder contains output files from our experiments. It follows a similar structure as the one that can be found in the _scripts_ folder:
-- _DS\_analyze_ contains metrics characterising class overlap (only for DS1 and DS2).   
-- _csv\_metrics_ and _training\_metrics_ contain the same files (answering RQ1 and RQ2) except that the output format is either txt or csv. It represents accuracy and loss function results of training. 
-- _results\_analyze_ and _alphabet\_coverage_ contain output files corresponding to scripts that can be found in the respective corresponding folders under _scripts_.
+The _Results_ folder contains output files from our experiments:
+- _csv\_metrics_ and _training\_metrics_ contain the same files (answering RQ1 and RQ2) except that the output format is either txt or csv. It stores accuracy, precision, recall, f1-score and support computed during training. _training\_metrics_ also stores confusion matrices which were not further analysed.
+- _latex\_analyses_ contains tables with average and standard deviation for each of the metrics (accuracy, precision, recall, f1-score), register as pdf and LaTeX.   
+- _box\_plots_ contains one figure per metric (accuracy, precision, recall, f1-score). In each figure, there is one box-plot per dataset.   
+- _statistics_ contains a figure with the result of a multi-comparison statistical test: a Friedman's test with a Nemenyi's post-hoc explanation.
+
+## Execution
+
+There are three main ways to run the framework:
+ - Using the _training\_Model_ entry point either from another script (see _DS*-*unit.py_ for examples) or 
+   from the terminal: `python3 training_Model.py  --dataset BPIC15.csv --model_type LSTM --nb_epochs 10 --nb_units 10 --training_ratio 66‘.  This commands trains a LSTM with 10 epochs and 10 units and 66% of training data for the BPIC15.csv datasets.
+ - Using _job-array-*.py_ scripts with SLURM job scheduler. Examples of the SLURM bash scripts we used are in the root of this repository (_run-dragon*.sh_).
 
 

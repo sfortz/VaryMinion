@@ -1,4 +1,5 @@
 import os
+import subprocess
 import training_Model as minion
 
 idx = int(os.environ["SLURM_ARRAY_TASK_ID"])
@@ -9,7 +10,7 @@ batch_sizes = [128]
 units = [30]
 activations = ["tanh", "sigmoid"]
 losses = ["bin_ce", "bin_ce-logits", "mse", "jaccard", "manhattan"]
-nb_iterations = 10
+nb_iterations = 2
 
 
 def get_number_of_executions():
@@ -35,7 +36,6 @@ def available_configs():
                     for u in units:
                         for act in activations:
                             for l in losses:
-                                # config = [i, ds, m, e, u, bs, act, l]
                                 configs += [[i, ds, m, e, u, bs, act, l]]
                                 i += 1
     return configs
@@ -79,3 +79,6 @@ if __name__ == "__main__":
     for i in range(0, nb_iterations):
         print("Exécution " + str(i) + " : ")
         minion.main(ds, m, True, e, u, bs, 0.66, act, l)
+        sourceDir = os.path.expandvars("$LOCALSCRATCH/$SLURM_JOB_ID/VaryMinions/results/training_metrics/")
+        destDir = os.path.expandvars("$CECIHOME/VaryMinions/results/training_metrics/")
+        subprocess.call(["rsync", "-azu", sourceDir, destDir])

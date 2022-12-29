@@ -122,9 +122,3 @@ def preproc(dataset_filename, multi):
     encoded_ev, event2int, int2event = preprocessing_to_num(df_dataset)
     df_ev_encoded = pd.DataFrame(encoded_ev)
     return df_ev_encoded, df_cl_encoded, event2int, int2event
-
-# Pas sure que ce soit nécessaire...
-# disable eager execution
-# tf.compat.v1.disable_eager_execution()
-
-# mlb = MultiLabelBinarizer() instead of LabelBinarizer() -> Pas besoin car fait manuellement

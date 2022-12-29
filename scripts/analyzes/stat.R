@@ -25,6 +25,7 @@ multiCompare <- function(df, measure, pvalue, outputPath, title){
     png(filename=title, res = 72*resfactor, height=480*resfactor, width=480*resfactor)
     nem = nemenyi(df, plottype = "vmcb", conf.level = 1.0 - pvalue) # Nemenyi post-hoc analysis
     dev.off()
+    print(nem)
 }
 
 
@@ -45,6 +46,7 @@ boxplots <- function(df, outputPath, metric_name){
     bp =  bp + theme(axis.text.x = element_text(angle = 90))
     bp = bp + labs(x="RNN Configurations", y=metric_name)
     bp = bp + theme(axis.text.x=element_text(size=9))
+    #bp = bp + stat_summary(fun.y="mean",color="blue", shape=18, size=0.3)
 
     title <- paste("figure_", metric_name, sep ="")
     title <- paste(title,".png", sep ="")

@@ -6,7 +6,7 @@ from rpy2.robjects import pandas2ri
 from rpy2.robjects.packages import importr
 
 
-def r_stat(df, m, n, pvalue, title):
+def r_stat(df, m, pvalue, title):
     # Defining the R script and loading the instance in Python
     r = ro.r
     r['source']('stat.R')
@@ -21,7 +21,6 @@ def r_stat(df, m, n, pvalue, title):
 
         # Invoking the R function and getting the result
         r_function(df, m, pvalue, output_directory, title)
-
 
 
 def get_dataset(ds):
@@ -63,9 +62,9 @@ def r_launcher():
     loss_acc_time = read_csv_file("training_loss_acc_time/")
     df = get_dataset(loss_acc_time)
 
-    title = "All_Configs_Accuracy"
+    title = "figure_Nemenyi"
 
-    r_stat(df, 'accuracy', 10, 0.05, title)
+    r_stat(df, 'accuracy', 0.05, title)
 
 
 if __name__ == '__main__':
